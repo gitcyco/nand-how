@@ -1,11 +1,26 @@
-<%- include('partials/header') -%>
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<title></title>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<main class="container">
-    <div class="row justify-content-around mt-5">
-        <a href="/login" class="col-3 btn btn-primary"> Login</a>
-        <a href="/signup" class="col-3 btn btn-primary"> Signup</a>
-    </div>
-</main>
-    
+  <link type="text/css" rel="stylesheet" href="/css/example.css" />
 
-<%- include('partials/footer') -%>
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/jquery-ui.js"></script>
+    <script src="js/draw2d.js"></script>
+    <script src="js/figures/TriangleFigure.js"></script>
+    <script src="js/app/exampleTriangle.js"></script>
+
+</head>
+
+<body>
+
+    <div  onselectstart="javascript:/*IE8 hack*/return false" id="gfx_holder" style="width:600px; height:600px; border: 1px solid black;">
+
+</div>
+
+
+</body>
+</html>

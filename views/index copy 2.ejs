@@ -1,0 +1,23 @@
+<%- include('partials/header') -%>
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/jquery-ui.js"></script>
+    <script src="js/draw2d.js"></script>
+    <script src="js/figures/TriangleFigure.js"></script>
+    <script src="js/app/exampleTriangle.js"></script>
+
+
+<main class="container">
+    <div class="row justify-content-around mt-5">
+        <a href="/login" class="col-3 btn btn-primary"> Login</a>
+        <a href="/signup" class="col-3 btn btn-primary"> Signup</a>
+    </div>
+
+
+    <div onselectstart="javascript:/*IE8 hack*/return false" id="gfx_holder" style="width:3000px; height:3000px;">
+    </div>
+
+</main>
+    
+
+
+<%- include('partials/footer') -%>
