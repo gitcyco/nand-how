@@ -14,13 +14,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const exportLink = document.getElementById("export-json");
   exportLink.addEventListener("click", (e) => exportJSON(e, canvas));
+
+  const importLink = document.getElementById("import-json");
+  importLink.addEventListener("click", (e) => importJSON(e, canvas));
 });
 
 function exportJSON(e, canvas) {
   console.log("Clicked Export JSON", canvas);
   // displayJSON(canvas);
   const canvasJSON = getCanvasJSON(canvas);
-  console.log(canvasJSON);
+  putCanvasJSON(canvasJSON);
+  // console.log(canvasJSON);
+}
+
+// Fetches a JSON canvas and puts it onto the current canvas
+async function importJSON(e, canvas) {
+  try {
+    const canvasJson = await (await fetch("/circuits")).json();
+    console.log("IMPORTED:", JSON.parse(canvasJson[0].canvas));
+
+    // Define reader and import the json into the canvas
+    let reader = new draw2d.io.json.Reader();
+    reader.unmarshal(canvas, JSON.parse(canvasJson[0].canvas));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function displayJSON(canvas) {
@@ -39,4 +57,25 @@ function getCanvasJSON(canvas) {
     canvasJSON = JSON.stringify(json);
   });
   return canvasJSON;
+}
+
+async function putCanvasJSON(canvasJSON) {
+  // const ticketId = this.parentNode.dataset.id;
+  console.log("CHECK:", canvasJSON);
+  //   return;
+  try {
+    const response = await fetch("circuits/createCircuit", {
+      method: "put",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({
+        title: "Canvas Save",
+        canvas: canvasJSON,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+    location.reload();
+  } catch (err) {
+    console.log(err);
+  }
 }
