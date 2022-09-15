@@ -23,6 +23,7 @@ body {
 }
 
 .nand-canvas {
+  background: transparent url(background.png);
   /* background: transparent url(background.png);
   width: 200px;
   height: 200px; */

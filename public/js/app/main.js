@@ -12,12 +12,23 @@ document.addEventListener("DOMContentLoaded", function () {
   let msg = new draw2d.shape.note.PostIt({ text: "Just a basic triangle" });
   canvas.add(msg, 20, 20);
 
+  let AND = new circuit_digital_gate_DIN40700_AND({ x: 150, y: 150, width: 100, height: 140 });
+
   const exportLink = document.getElementById("export-json");
   exportLink.addEventListener("click", (e) => exportJSON(e, canvas));
 
   const importLink = document.getElementById("import-json");
   importLink.addEventListener("click", (e) => importJSON(e, canvas));
+
+  const addTriangle = document.getElementById("add-triangle");
+  addTriangle.addEventListener("click", (e) => addShape(e, canvas));
 });
+
+function addShape(e, canvas) {
+  // Add a simple triangle
+  let triangle = new TriangleFigure({ x: 100, y: 100, width: 100, height: 140 });
+  canvas.add(triangle);
+}
 
 function exportJSON(e, canvas) {
   console.log("Clicked Export JSON", canvas);
