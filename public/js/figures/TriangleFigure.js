@@ -1,4 +1,7 @@
 TriangleFigure = draw2d.shape.basic.Polygon.extend({
+  NAME: "TriangleFigure",
+  //   VERSION: "1.0",
+
   init: function (attr) {
     this._super($.extend({ bgColor: "#00a3f6", color: "#1B1B1B" }, attr));
 

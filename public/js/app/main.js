@@ -1,3 +1,13 @@
+// //the document to load....in this case a simple JSON Object
+// const bitJSON = [
+//   {
+//     type: "BitSend",
+//     id: "354fa3b9-a834-0221-2009-abc2d6bd852a",
+//     x: 150,
+//     y: 150,
+//   },
+// ];
+
 document.addEventListener("DOMContentLoaded", function () {
   // var app = new example.Application();
 
@@ -12,7 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
   let msg = new draw2d.shape.note.PostIt({ text: "Just a basic triangle" });
   canvas.add(msg, 20, 20);
 
-  let AND = new circuit_digital_gate_DIN40700_AND({ x: 150, y: 150, width: 100, height: 140 });
+  let bitSend = new BitSend({ x: 125, y: 150, width: 20, height: 20 });
+  canvas.add(bitSend, 50, 50);
+
+  let bitReceive = new BitReceive({ x: 175, y: 200, width: 20, height: 20 });
+  canvas.add(bitReceive, 50, 150);
+
+  // let AND = new circuit_digital_gate_DIN40700_AND({ x: 150, y: 150, width: 100, height: 140 });
 
   const exportLink = document.getElementById("export-json");
   exportLink.addEventListener("click", (e) => exportJSON(e, canvas));
@@ -47,6 +63,8 @@ async function importJSON(e, canvas) {
     // Define reader and import the json into the canvas
     let reader = new draw2d.io.json.Reader();
     reader.unmarshal(canvas, JSON.parse(canvasJson[0].canvas));
+
+    // reader.unmarshal(canvas, bitJSON);
   } catch (error) {
     console.log(error);
   }
