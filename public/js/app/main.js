@@ -28,6 +28,9 @@ document.addEventListener("DOMContentLoaded", function () {
   let bitReceive = new BitReceive({ x: 175, y: 200, width: 20, height: 20 });
   canvas.add(bitReceive, 50, 150);
 
+  let andSimple = new AndSimple({ x: 175, y: 200, width: 70, height: 70 });
+  canvas.add(andSimple, 150, 250);
+
   // let AND = new circuit_digital_gate_DIN40700_AND({ x: 150, y: 150, width: 100, height: 140 });
 
   const exportLink = document.getElementById("export-json");
