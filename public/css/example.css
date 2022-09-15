@@ -28,3 +28,16 @@ body {
   height: 600px;
   border: 1px solid black;
 }
+
+#main-canvas {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+  position: relative;
+  /* top: 64px;
+	right: 0px;
+	left: 160px;
+	bottom: 0px; */
+  overflow: scroll;
+  background-color: #ffffff;
+}
