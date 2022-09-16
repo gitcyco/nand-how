@@ -5,38 +5,43 @@
 // Go to the Designer http://www.draw2d.org
 // to design your own shape or download user generated
 //
-var AndFancy = draw2d.SetFigure.extend({
-  NAME: "AndFancy",
+var OrClean = draw2d.SetFigure.extend({
+  NAME: "OrClean",
 
   init: function (attr, setter, getter) {
-    this._super($.extend({ stroke: 0, bgColor: null, width: 110, height: 74 }, attr), setter, getter);
+    this._super($.extend({ stroke: 0, bgColor: null, width: 50, height: 40 }, attr), setter, getter);
     var port;
-    // Port
-    port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0, 26.35135135135135));
+    // output
+    port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(97.26905609435926, 50.000000000000036));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("input1");
+    port.setName("output");
     port.setMaxFanOut(20);
-    // Port
-    port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0, 68.24324324324324));
+    // input2
+    port = this.addPort(
+      new DecoratedInputPort(),
+      new draw2d.layout.locator.XYRelPortLocator(22.820501641169983, 77.50000000000003)
+    );
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
     port.setName("input2");
     port.setMaxFanOut(20);
-    // Port
-    // port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(98.18181818181817, 49.32432432432432));
-    port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99, 50));
+    // input1
+    port = this.addPort(
+      new DecoratedInputPort(),
+      new draw2d.layout.locator.XYRelPortLocator(22.820501641169983, 22.500000000000036)
+    );
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("output");
+    port.setName("input1");
     port.setMaxFanOut(20);
     this.persistPorts = false;
   },
 
   createShapeElement: function () {
     var shape = this._super();
-    this.originalWidth = 110;
-    this.originalHeight = 74;
+    this.originalWidth = 50;
+    this.originalHeight = 40;
     return shape;
   },
 
@@ -44,16 +49,34 @@ var AndFancy = draw2d.SetFigure.extend({
     this.canvas.paper.setStart();
 
     // BoundingBox
-    shape = this.canvas.paper.path("M0,0 L110,0 L110,74 L0,74");
+    shape = this.canvas.paper.path("M0,0 L50,0 L50,40 L0,40");
     shape.attr({ stroke: "none", "stroke-width": 0, fill: "none" });
     shape.data("name", "BoundingBox");
 
     // Rectangle
     shape = this.canvas.paper.path(
-      "M67.28497384861942 0.5L0 0.5L0 73.5L67.28497384861942 73.5L73 74L79.4249825736764 73.43788686145169L85.65474530304971 71.76862696907861L91.5 69.04293994002421L96.78314155840201 65.34364439540218L101.34364439540218 60.78314155840195L105.04293994002421 55.5L107.76862696907858 49.65474530304974L109.43788686145172 43.42498257367643L110 37L109.43788686145172 30.57501742632357L107.76862696907858 24.345254696950263L105.04293994002421 18.5L101.34364439540218 13.216858441598049L96.7831415584019 8.65635560459782L91.5 4.95706005997576L85.65474530304971 2.2313730309213895L79.4249825736764 0.562113138548284L73 0L67.28497384861942 0.5Z"
+      "M0 40L6.6433020774841225 39.44110780459704L17.053172310124864 37.91702186871686L26.461969855308155 35.84853628980619L34.583813160704494 33.29850095547613L41.171924127331124 30.344397398980107L46.0261263372106 27.075984562033682L48.998927312542094 23.592571514790848L50 20L48.998927312542094 16.407428485209152L46.0261263372106 12.924015437966318L41.171924127331124 9.655602601019893L34.583813160704494 6.7014990445238425L26.461969855308155 4.151463710193781L17.053172310124864 2.0829781312831415L6.6433020774841225 0.5588921954029331L0 0L1.3098414343405693 0.45792107955401207L5.607493880797733 2.7140163572772735L9.317304787405135 5.495337500854845L12.326553427019803 8.717375474755613L14.543805302480905 12.28223028557241L15.90169033753557 16.08158562378219L16.358949882517095 20L15.90169033753557 23.91841437621781L14.543805302480905 27.71776971442756L12.326553427019803 31.282624525244387L9.317304787405135 34.50466249914513L5.607493880797733 37.28598364272278L1.3098414343405693 39.54207892044593L0 40Z"
     );
-    shape.attr({ stroke: "#303030", "stroke-width": 1, fill: "#FFFFFF", dasharray: null, opacity: 1 });
+    shape.attr({ stroke: "#303030", "stroke-width": 1, fill: "none", dasharray: null, opacity: 1 });
     shape.data("name", "Rectangle");
+
+    // Label
+    shape = this.canvas.paper.text(0, 0, "OR");
+    shape.attr({
+      x: 20.63452804717963,
+      y: 19.38255328908749,
+      "text-anchor": "start",
+      text: "OR",
+      "font-family": '"Arial"',
+      "font-size": 10,
+      stroke: "none",
+      fill: "#080808",
+      "stroke-scale": true,
+      "font-weight": "normal",
+      "stroke-width": 0,
+      opacity: 1,
+    });
+    shape.data("name", "Label");
 
     return this.canvas.paper.setFinish();
   },
@@ -194,7 +217,7 @@ var AndFancy = draw2d.SetFigure.extend({
  *
  *
  */
-AndFancy = AndFancy.extend({
+OrClean = OrClean.extend({
   init: function (attr, setter, getter) {
     this._super(attr, setter, getter);
 

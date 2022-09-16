@@ -15,19 +15,19 @@ var AndClean = draw2d.SetFigure.extend({
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 22.5));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("Port");
+    port.setName("input1");
     port.setMaxFanOut(20);
     // Port
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 77.5));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("Port");
+    port.setName("input1");
     port.setMaxFanOut(20);
     // Port
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99.35551887266377, 50));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("Port");
+    port.setName("output");
     port.setMaxFanOut(20);
     this.persistPorts = false;
   },

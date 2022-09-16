@@ -18,7 +18,7 @@ var NandClean = draw2d.SetFigure.extend({
     );
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("Port");
+    port.setName("input1");
     port.setMaxFanOut(20);
     // Port
     port = this.addPort(
@@ -27,13 +27,13 @@ var NandClean = draw2d.SetFigure.extend({
     );
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("Port");
+    port.setName("input1");
     port.setMaxFanOut(20);
     // Port
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(108.33333333333334, 50.00000000000014));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("Port");
+    port.setName("output");
     port.setMaxFanOut(20);
     this.persistPorts = false;
   },
