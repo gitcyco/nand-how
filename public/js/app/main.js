@@ -49,7 +49,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const addTriangle = document.getElementById("add-triangle");
   addTriangle.addEventListener("click", (e) => addShape(e, canvas));
+
+  const downloadCanvas = document.getElementById("download-canvas");
+  downloadCanvas.addEventListener("click", (e) => getCanvasImage(e, canvas, downloadCanvas));
 });
+
+function getCanvasImage(event, canvas, element) {
+  console.log("DOWNLOAD!", canvas);
+
+  // example how to create a PNG image and set an
+  // image src attribute.
+  //
+  var writer = new draw2d.io.png.Writer();
+  writer.marshal(canvas, function (png) {
+    console.log("PNG:", png);
+
+    const createEl = document.createElement("a");
+    createEl.href = png;
+
+    // This is the name of our downloaded file
+    createEl.download = "download-this-canvas";
+
+    // Click the download button, causing a download, and then remove it
+    createEl.click();
+    createEl.remove();
+  });
+
+  // let canvasUrl = canvas.toDataURL("image/jpeg", 0.5);
+  // console.log(canvasUrl);
+}
 
 function addShape(e, canvas) {
   // Add a simple triangle
