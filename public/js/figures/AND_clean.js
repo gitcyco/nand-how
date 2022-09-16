@@ -9,6 +9,11 @@ var AndClean = draw2d.SetFigure.extend({
   NAME: "AndClean",
 
   init: function (attr, setter, getter) {
+    this.value = false;
+    this.colors = {};
+    this.colors[true] = "#00f000";
+    this.colors[false] = "#f00000";
+
     this._super($.extend({ stroke: 0, bgColor: null, width: 50, height: 40 }, attr), setter, getter);
     var port;
     // Port
@@ -21,7 +26,7 @@ var AndClean = draw2d.SetFigure.extend({
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 77.5));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("input1");
+    port.setName("input2");
     port.setMaxFanOut(20);
     // Port
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99.35551887266377, 50));
@@ -198,6 +203,36 @@ var AndClean = draw2d.SetFigure.extend({
 
         // add the new figure as child to this figure
         this.add(figure, locator);
+      }, this)
+    );
+  },
+  /**
+   * @method
+   * Called if the value of any port has been changed
+   *
+   * @param {draw2d.Port} relatedPort
+   * @template
+   */
+  onPortValueChanged: function (relatedPort) {
+    // call the timer manually. In this case we are safe and we
+    // didn'T lost any data...
+    // this.onTimer();
+
+    let i1 = this.getInputPort("input1");
+    let i2 = this.getInputPort("input2");
+    let o1 = this.getOutputPort("output");
+
+    o1.setValue(i1.getValue() && i2.getValue());
+    console.log("AND VAL:", o1.getValue());
+
+    this.value = o1.getValue();
+    this.setBackgroundColor(this.colors[this.value]);
+    let connections = this.getOutputPort(0).getConnections();
+    connections.each(
+      $.proxy(function (i, conn) {
+        var targetPort = conn.getTarget();
+        targetPort.setValue(this.value);
+        conn.setColor(this.getBackgroundColor());
       }, this)
     );
   },

@@ -9,6 +9,11 @@ var NotClean = draw2d.SetFigure.extend({
   NAME: "NotClean",
 
   init: function (attr, setter, getter) {
+    this.value = false;
+    this.colors = {};
+    this.colors[true] = "#00f000";
+    this.colors[false] = "#f00000";
+
     this._super(
       $.extend({ stroke: 0, bgColor: null, width: 25.538945252810663, height: 27.999999999999986 }, attr),
       setter,

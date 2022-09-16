@@ -9,6 +9,11 @@ var NandClean = draw2d.SetFigure.extend({
   NAME: "NandClean",
 
   init: function (attr, setter, getter) {
+    this.value = false;
+    this.colors = {};
+    this.colors[true] = "#00f000";
+    this.colors[false] = "#f00000";
+
     this._super($.extend({ stroke: 0, bgColor: null, width: 60, height: 39.999999999999886 }, attr), setter, getter);
     var port;
     // Port
@@ -27,7 +32,7 @@ var NandClean = draw2d.SetFigure.extend({
     );
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("input1");
+    port.setName("input2");
     port.setMaxFanOut(20);
     // Port
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(108.33333333333334, 50.00000000000014));

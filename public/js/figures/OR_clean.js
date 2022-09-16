@@ -9,6 +9,11 @@ var OrClean = draw2d.SetFigure.extend({
   NAME: "OrClean",
 
   init: function (attr, setter, getter) {
+    this.value = false;
+    this.colors = {};
+    this.colors[true] = "#00f000";
+    this.colors[false] = "#f00000";
+
     this._super($.extend({ stroke: 0, bgColor: null, width: 58, height: 50.993683632178346 }, attr), setter, getter);
     var port;
     // output

@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let andSimple = new AndSimple({ x: 175, y: 200, width: 70, height: 70 });
   canvas.add(andSimple, 150, 250);
 
-  let andFancy = new AndFancy({ x: 275, y: 250, width: 70, height: 70 });
-  canvas.add(andFancy, 150, 250);
+  let andClean = new AndClean({ x: 275, y: 250, width: 70, height: 70 });
+  canvas.add(andClean, 150, 250);
 
   // let AND = new circuit_digital_gate_DIN40700_AND({ x: 150, y: 150, width: 100, height: 140 });
 
