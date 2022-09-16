@@ -1,28 +1,18 @@
-// //the document to load....in this case a simple JSON Object
-// const bitJSON = [
-//   {
-//     type: "BitSend",
-//     id: "354fa3b9-a834-0221-2009-abc2d6bd852a",
-//     x: 150,
-//     y: 150,
-//   },
-// ];
-let app;
+// Instantiate the container class for main drawing application
+const app = new mainApp.Application();
 
 document.addEventListener("DOMContentLoaded", function () {
-  app = new mainApp.Application();
-
   // const canvas = new draw2d.Canvas("main-canvas");
   const canvas = app.view;
   canvas.paper.canvas.style.position = "relative";
 
   // Add a simple triangle
-  let triangle = new TriangleFigure({ x: 100, y: 100, width: 100, height: 140 });
-  canvas.add(triangle);
+  // let triangle = new TriangleFigure({ x: 100, y: 100, width: 100, height: 140 });
+  // canvas.add(triangle);
 
   // Add a basic PostIt note
-  let msg = new draw2d.shape.note.PostIt({ text: "Just a basic triangle" });
-  canvas.add(msg, 20, 20);
+  // let msg = new draw2d.shape.note.PostIt({ text: "Just a basic triangle" });
+  // canvas.add(msg, 20, 20);
 
   // bitSend is a bit initiator, toggle 0/1, false/true, off/on, red/green
   let bitSend = new BitSend({ x: 125, y: 150, width: 20, height: 20 });
@@ -59,10 +49,10 @@ document.addEventListener("DOMContentLoaded", function () {
 function getCanvasImage(event, canvas, element) {
   console.log("DOWNLOAD!", canvas);
 
-  // example how to create a PNG image and set an
-  // image src attribute.
+  // create a PNG image and set an
+  // image src attribute and auto-download. Just a test for now!
   //
-  var writer = new draw2d.io.png.Writer();
+  const writer = new draw2d.io.png.Writer();
   writer.marshal(canvas, function (png) {
     console.log("PNG:", png);
 
@@ -131,7 +121,7 @@ function getCanvasJSON(canvas) {
 
 async function putCanvasJSON(canvasJSON) {
   // const ticketId = this.parentNode.dataset.id;
-  console.log("CHECK:", canvasJSON);
+  console.log("CHECK:", JSON.parse(canvasJSON));
   //   return;
   try {
     const response = await fetch("circuits/createCircuit", {

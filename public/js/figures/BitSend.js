@@ -37,6 +37,7 @@ BitSend = draw2d.shape.basic.Rectangle.extend({
         var targetPort = conn.getTarget();
         targetPort.setValue(this.value);
         conn.setColor(this.getBackgroundColor());
+        // conn.setRouter(defaultRouter);
       }, this)
     );
   },
