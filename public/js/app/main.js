@@ -7,11 +7,13 @@
 //     y: 150,
 //   },
 // ];
+let app;
 
 document.addEventListener("DOMContentLoaded", function () {
-  // var app = new example.Application();
+  app = new mainApp.Application();
 
-  const canvas = new draw2d.Canvas("main-canvas");
+  // const canvas = new draw2d.Canvas("main-canvas");
+  const canvas = app.view;
   canvas.paper.canvas.style.position = "relative";
 
   // Add a simple triangle

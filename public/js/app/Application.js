@@ -1,15 +1,15 @@
 // declare the namespace for this example
-var example = {};
+var mainApp = {};
 
 /**
  *
  * The **GraphicalEditor** is responsible for layout and dialog handling.
  *
- * @author Andreas Herz
+ * @author Micah Nerren
  * @extends draw2d.ui.parts.GraphicalEditor
  */
-example.Application = Class.extend({
-  NAME: "example.Application",
+mainApp.Application = Class.extend({
+  NAME: "mainApp.Application",
 
   /**
    * @constructor
@@ -17,7 +17,7 @@ example.Application = Class.extend({
    * @param {String} canvasId the id of the DOM element to use as paint container
    */
   init: function () {
-    this.view = new example.View("canvas");
-    this.toolbar = new example.Toolbar("toolbar", this.view);
+    this.view = new mainApp.View("main-canvas");
+    // this.toolbar = new mainApp.Toolbar("toolbar", this.view);
   },
 });

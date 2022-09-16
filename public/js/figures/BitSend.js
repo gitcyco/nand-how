@@ -12,7 +12,7 @@ BitSend = draw2d.shape.basic.Rectangle.extend({
     // this.createPort("output");
 
     // Port
-    port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99.35551887266377, 25));
+    port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99.35551887266377, 50));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
     port.setName("output");

@@ -11,12 +11,19 @@ BitReceive = draw2d.shape.basic.Rectangle.extend({
 
     // this.createPort("input");
     // Port
-    port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 50));
+    // port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 50));
+    port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(0.616466432000038, 50));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
+    this.setBackgroundColor(this.colors[this.value]);
+    this.setColor(this.colors[this.value]);
+    // this.setBackgroundColor("#00f000");
+    // port.setBackgroundColor("#37B1DE");
     port.setName("input0");
     port.setMaxFanOut(20);
     port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
+    this.persistPorts = false;
+    console.log("RECEIVER BGCOLOR", this.getBackgroundColor());
   },
 
   /**
@@ -31,6 +38,7 @@ BitReceive = draw2d.shape.basic.Rectangle.extend({
     // didn'T lost any data...
     // this.onTimer();
     let port = this.getInputPort("input0");
+    port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
     let value = port.getValue();
     console.log("this.value, value:", this.value, value);
     this.value = value;

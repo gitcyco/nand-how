@@ -20,7 +20,8 @@ var AndClean = draw2d.SetFigure.extend({
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 22.5));
     // port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 22.5));
     port.setConnectionDirection();
-    port.setBackgroundColor("#37B1DE");
+    // port.setBackgroundColor("#37B1DE");
+    port.setBackgroundColor(this.colors[false]);
     port.setName("input0");
     port.setMaxFanOut(20);
     console.log("INPUT0 Default Value:", port.getValue());
@@ -31,7 +32,8 @@ var AndClean = draw2d.SetFigure.extend({
     // Port
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 77.5));
     port.setConnectionDirection();
-    port.setBackgroundColor("#37B1DE");
+    // port.setBackgroundColor("#37B1DE");
+    port.setBackgroundColor(this.colors[false]);
     port.setName("input1");
     console.log("INPUT1 Default Value:", port.getValue());
     port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
@@ -40,7 +42,8 @@ var AndClean = draw2d.SetFigure.extend({
     // Port
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99.35551887266377, 50));
     port.setConnectionDirection();
-    port.setBackgroundColor("#37B1DE");
+    // port.setBackgroundColor("#37B1DE");
+    port.setBackgroundColor(this.colors[false]);
     port.setName("output");
     port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
     port.setMaxFanOut(20);
@@ -59,14 +62,17 @@ var AndClean = draw2d.SetFigure.extend({
 
     // BoundingBox
     shape = this.canvas.paper.path("M0,0 L50,0 L50,40 L0,40");
-    shape.attr({ stroke: "none", "stroke-width": 0, fill: "none" });
+    // shape.attr({ stroke: "none", "stroke-width": 0, fill: "none" });
+    // shape.attr({ stroke: "none", "stroke-width": 0, fill: "#FFFFFF", opacity: 0 });
+    shape.attr({ stroke: "none", "stroke-width": 0, opacity: 0 });
     shape.data("name", "BoundingBox");
 
     // Rectangle
     shape = this.canvas.paper.path(
       "M33.223876766324224 0.017293963908841192L33.223876766324224 0L0 0L0 40L33.223876766324224 40L33.223876766324224 39.982706036091145L33.388061616838 40L36.27269444458943 39.696155060244166L39.06967916356439 38.79385241571816L41.69403080841954 37.32050807568879L44.06600978241096 35.32088886237955L46.11354470469382 32.85575219373078L47.77442226275804 30L48.998177532445595 26.840402866513386L49.74762732913706 23.472963553338616L50 20L49.74762732913706 16.527036446661327L48.998177532445595 13.159597133486614L47.77442226275804 10L46.11354470469382 7.14424780626922L44.06600978241096 4.679111137620453L41.69403080841954 2.679491924311236L39.06967916356439 1.206147584281851L36.27269444458943 0.30384493975584803L33.388061616838 1.4210854715202004e-14L33.223876766324224 0.017293963908841192Z"
     );
-    shape.attr({ stroke: "#303030", "stroke-width": 1, fill: "#FFFFFF", dasharray: null, opacity: 1 });
+    // shape.attr({ stroke: "#303030", "stroke-width": 1, fill: "#FFFFFF", dasharray: null, opacity: 1 });
+    shape.attr({ stroke: "#303030", "stroke-width": 1, dasharray: null, opacity: 1, cssClass: "rect-red" });
     shape.data("name", "Rectangle");
 
     // Label
@@ -98,6 +104,7 @@ var AndClean = draw2d.SetFigure.extend({
     var result = null;
     this.svgNodes.some(function (shape) {
       if (shape.data("name") === name) {
+        // if (shape.data("name") !== name) {
         result = shape;
       }
       return result !== null;
@@ -183,6 +190,16 @@ var AndClean = draw2d.SetFigure.extend({
     return memento;
   },
 
+  //   repaint: function (attributes) {
+  //     // if (this.repaintBlocked === true || this.shape === null) {
+  //     //   return;
+  //     // }
+  //
+  //     attributes = attributes || {};
+  //
+  //     console.log("ATTRIBUTES:", attributes, this.svgNodes);
+  //   },
+
   /**
    * @method
    * Read all attributes from the serialized properties and transfer them into the shape.
@@ -228,6 +245,11 @@ var AndClean = draw2d.SetFigure.extend({
     // didn'T lost any data...
     // this.onTimer();
 
+    console.log("ME:", this);
+    // this.setBackgroundColor(this.colors[this.value]);
+
+    // this.setColor("#111111");
+
     let i0 = this.getInputPort("input0");
     let i1 = this.getInputPort("input1");
     let o1 = this.getOutputPort("output");
@@ -248,7 +270,7 @@ var AndClean = draw2d.SetFigure.extend({
     console.log("output, AND VAL:", input0, input1, output, o1.getValue());
 
     this.value = o1.getValue();
-    this.setBackgroundColor(this.colors[this.value]);
+    // this.setBackgroundColor(this.colors[this.value]);
     let connections = this.getOutputPort("output").getConnections();
     connections.each(
       $.proxy(function (i, conn) {
@@ -257,7 +279,8 @@ var AndClean = draw2d.SetFigure.extend({
         let targetPort = conn.getTarget();
         console.log("TARGET PORT:", targetPort);
         targetPort.setValue(this.value);
-        conn.setColor(this.getBackgroundColor());
+        targetPort.setColor(this.colors[this.value]);
+        conn.setColor(this.colors[this.value]);
       }, this)
     );
   },
@@ -270,6 +293,14 @@ var AndClean = draw2d.SetFigure.extend({
    */
   onConnect: function (event, connection) {
     console.log("CONNECTED!", event, connection);
+  },
+  onClick: function (e) {
+    // console.log("ME:", this);
+    // // for (let obj in this) {
+    // //   console.log(obj);
+    // // }
+    // this.color = "#F1F1F1";
+    // console.log(this.color, this.bgColor);
   },
 });
 
