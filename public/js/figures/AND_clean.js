@@ -17,8 +17,8 @@ var AndClean = draw2d.SetFigure.extend({
     this._super($.extend({ stroke: 0, bgColor: null, width: 50, height: 40 }, attr), setter, getter);
     var port;
     // Port
-    // port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 22.5));
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 22.5));
+    // port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 22.5));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
     port.setName("input0");
