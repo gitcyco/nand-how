@@ -17,12 +17,14 @@ var AndClean = draw2d.SetFigure.extend({
     this._super($.extend({ stroke: 0, bgColor: null, width: 50, height: 40 }, attr), setter, getter);
     var port;
     // Port
+    // port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 22.5));
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 22.5));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
     port.setName("input0");
     port.setMaxFanOut(20);
-    port.setValue(false);
+    console.log("INPUT0 Default Value:", port.getValue());
+    port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
     // Alternatively you register for this event with:
     port.on("connect", this.onConnect);
 
@@ -31,14 +33,16 @@ var AndClean = draw2d.SetFigure.extend({
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
     port.setName("input1");
-    port.setValue(false);
+    console.log("INPUT1 Default Value:", port.getValue());
+    port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
     port.setMaxFanOut(20);
+
     // Port
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99.35551887266377, 50));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
     port.setName("output");
-    port.setValue(false);
+    port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
     port.setMaxFanOut(20);
     this.persistPorts = false;
   },
@@ -224,21 +228,28 @@ var AndClean = draw2d.SetFigure.extend({
     // didn'T lost any data...
     // this.onTimer();
 
-    let i1 = this.getInputPort("input0");
-    let i2 = this.getInputPort("input1");
+    let i0 = this.getInputPort("input0");
+    let i1 = this.getInputPort("input1");
     let o1 = this.getOutputPort("output");
 
-    if (i1 === null || i2 === null || o1 === null) {
-      console.log("NULL start values, return");
-      return;
-    }
+    i0.setValue(i0.getValue() === null ? false : i0.getValue());
+    i1.setValue(i1.getValue() === null ? false : i1.getValue());
 
-    o1.setValue(i1.getValue() && i2.getValue());
-    console.log("AND VAL:", o1.getValue());
+    const input0 = i0.getValue() === null ? false : i0.getValue();
+    const input1 = i1.getValue() === null ? false : i1.getValue();
+    const output = input0 && input1;
+
+    // if (i0.getValue() === null || i1.getValue() === null || o1.getValue === null) {
+    //   console.log("NULL start values, return");
+    //   return;
+    // }
+    o1.setValue(output);
+    // o1.setValue(i0.getValue() && i1.getValue());
+    console.log("output, AND VAL:", input0, input1, output, o1.getValue());
 
     this.value = o1.getValue();
     this.setBackgroundColor(this.colors[this.value]);
-    let connections = this.getOutputPort(0).getConnections();
+    let connections = this.getOutputPort("output").getConnections();
     connections.each(
       $.proxy(function (i, conn) {
         let sourcePort = conn.getSource();

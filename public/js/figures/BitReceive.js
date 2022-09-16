@@ -9,7 +9,14 @@ BitReceive = draw2d.shape.basic.Rectangle.extend({
 
     this._super($.extend({ width: 30, height: 30, resizeable: false, bgColor: this.colors[this.value] }, attr));
 
-    this.createPort("input");
+    // this.createPort("input");
+    // Port
+    port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 50));
+    port.setConnectionDirection();
+    port.setBackgroundColor("#37B1DE");
+    port.setName("input0");
+    port.setMaxFanOut(20);
+    port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
   },
 
   /**
@@ -23,7 +30,7 @@ BitReceive = draw2d.shape.basic.Rectangle.extend({
     // call the timer manually. In this case we are safe and we
     // didn'T lost any data...
     // this.onTimer();
-    let port = this.getInputPort(0);
+    let port = this.getInputPort("input0");
     let value = port.getValue();
     console.log("this.value, value:", this.value, value);
     this.value = value;

@@ -12,11 +12,11 @@ BitSend = draw2d.shape.basic.Rectangle.extend({
     // this.createPort("output");
 
     // Port
-    port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99.35551887266377, 50));
+    port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99.35551887266377, 25));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
     port.setName("output");
-    // port.setValue(false);
+    port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
     port.setMaxFanOut(20);
     this.persistPorts = false;
   },
@@ -31,7 +31,7 @@ BitSend = draw2d.shape.basic.Rectangle.extend({
     this.value = !this.value;
     this.setBackgroundColor(this.colors[this.value]);
 
-    var connections = this.getOutputPort(0).getConnections();
+    let connections = this.getOutputPort("output").getConnections();
     connections.each(
       $.proxy(function (i, conn) {
         var targetPort = conn.getTarget();
