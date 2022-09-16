@@ -20,19 +20,25 @@ var AndClean = draw2d.SetFigure.extend({
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 22.5));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("input1");
+    port.setName("input0");
     port.setMaxFanOut(20);
+    port.setValue(false);
+    // Alternatively you register for this event with:
+    port.on("connect", this.onConnect);
+
     // Port
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 77.5));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("input2");
+    port.setName("input1");
+    port.setValue(false);
     port.setMaxFanOut(20);
     // Port
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99.35551887266377, 50));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
     port.setName("output");
+    port.setValue(false);
     port.setMaxFanOut(20);
     this.persistPorts = false;
   },
@@ -218,9 +224,14 @@ var AndClean = draw2d.SetFigure.extend({
     // didn'T lost any data...
     // this.onTimer();
 
-    let i1 = this.getInputPort("input1");
-    let i2 = this.getInputPort("input2");
+    let i1 = this.getInputPort("input0");
+    let i2 = this.getInputPort("input1");
     let o1 = this.getOutputPort("output");
+
+    if (i1 === null || i2 === null || o1 === null) {
+      console.log("NULL start values, return");
+      return;
+    }
 
     o1.setValue(i1.getValue() && i2.getValue());
     console.log("AND VAL:", o1.getValue());
@@ -230,11 +241,24 @@ var AndClean = draw2d.SetFigure.extend({
     let connections = this.getOutputPort(0).getConnections();
     connections.each(
       $.proxy(function (i, conn) {
-        var targetPort = conn.getTarget();
+        let sourcePort = conn.getSource();
+        console.log("SOURCE PORT:", sourcePort);
+        let targetPort = conn.getTarget();
+        console.log("TARGET PORT:", targetPort);
         targetPort.setValue(this.value);
         conn.setColor(this.getBackgroundColor());
       }, this)
     );
+  },
+  /**
+   * @method
+   * Called if the value of any port has been changed
+   *
+   * @param {draw2d.Connection} connection
+   * @template
+   */
+  onConnect: function (event, connection) {
+    console.log("CONNECTED!", event, connection);
   },
 });
 

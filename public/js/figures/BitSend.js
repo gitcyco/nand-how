@@ -9,7 +9,16 @@ BitSend = draw2d.shape.basic.Rectangle.extend({
 
     this._super($.extend({ width: 30, height: 30, resizeable: false, bgColor: this.colors[this.value] }, attr));
 
-    this.createPort("output");
+    // this.createPort("output");
+
+    // Port
+    port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99.35551887266377, 50));
+    port.setConnectionDirection();
+    port.setBackgroundColor("#37B1DE");
+    port.setName("output");
+    // port.setValue(false);
+    port.setMaxFanOut(20);
+    this.persistPorts = false;
   },
 
   /**

@@ -22,9 +22,14 @@ document.addEventListener("DOMContentLoaded", function () {
   let msg = new draw2d.shape.note.PostIt({ text: "Just a basic triangle" });
   canvas.add(msg, 20, 20);
 
+  // bitSend is a bit initiator, toggle 0/1, false/true, off/on, red/green
   let bitSend = new BitSend({ x: 125, y: 150, width: 20, height: 20 });
   canvas.add(bitSend, 50, 50);
 
+  // bitSend is a bit initiator, toggle 0/1, true/false, on/off, red/green
+  canvas.add(new BitSend({ x: 125, y: 150, width: 20, height: 20 }), 80, 50);
+
+  // bitReceive is a bit receiver, it displays its input bit as red/green, 0/1, false/true, off/on
   let bitReceive = new BitReceive({ x: 175, y: 200, width: 20, height: 20 });
   canvas.add(bitReceive, 50, 150);
 
