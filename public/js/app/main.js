@@ -44,7 +44,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const downloadCanvas = document.getElementById("download-canvas");
   downloadCanvas.addEventListener("click", (e) => getCanvasImage(e, canvas, downloadCanvas));
+
+  const zoomIn = document.getElementById("side-zoom-in");
+  zoomIn.addEventListener("click", (e) => zoomInHandler(e, canvas, zoomIn));
+
+  const zoomOut = document.getElementById("side-zoom-out");
+  zoomOut.addEventListener("click", (e) => zoomOutHandler(e, canvas, zoomOut));
 });
+
+function zoomInHandler(event, canvas, zoomIn) {
+  canvas.setZoom(canvas.getZoom() * 0.7, true);
+}
+
+function zoomOutHandler(event, canvas, zoomOut) {
+  canvas.setZoom(canvas.getZoom() * 1.3, true);
+}
 
 function getCanvasImage(event, canvas, element) {
   console.log("DOWNLOAD!", canvas);

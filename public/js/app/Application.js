@@ -23,25 +23,26 @@ mainApp.Application = Class.extend({
    */
   init: function () {
     this.view = new mainApp.View("main-canvas");
+
     this.toolbar = new mainApp.Toolbar("toolbar", this, this.view);
 
-    this.appLayout = $("#container").layout({
-      north: {
-        resizable: false,
-        closable: false,
-        spacing_open: 0,
-        spacing_closed: 0,
-        size: 50,
-        paneSelector: "#toolbar",
-      },
-      center: {
-        resizable: false,
-        closable: false,
-        spacing_open: 0,
-        spacing_closed: 0,
-        paneSelector: "#main-canvas",
-      },
-    });
+    // this.appLayout = $("#container").layout({
+    //   north: {
+    //     resizable: false,
+    //     closable: false,
+    //     spacing_open: 0,
+    //     spacing_closed: 0,
+    //     size: 50,
+    //     paneSelector: "#toolbar",
+    //   },
+    //   center: {
+    //     resizable: false,
+    //     closable: false,
+    //     spacing_open: 0,
+    //     spacing_closed: 0,
+    //     paneSelector: "#main-canvas",
+    //   },
+    // });
 
     // this.toolbar = new mainApp.Toolbar("toolbar", this.view);
 
@@ -80,9 +81,9 @@ mainApp.Application = Class.extend({
     // );
   },
 
-  layout: function () {
-    this.appLayout.resizeAll();
-  },
+  // layout: function () {
+  //   this.appLayout.resizeAll();
+  // },
 
   /**
    * Load the JSON data into the view/canvas

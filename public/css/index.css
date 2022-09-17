@@ -124,3 +124,8 @@
 .switch-button-checkbox + .switch-button-label .switch-button-label-span {
   position: relative;
 }
+
+button:disabled {
+  background-color: red;
+  /*other style properties*/
+}
