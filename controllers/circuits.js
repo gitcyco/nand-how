@@ -4,6 +4,7 @@ const Post = require("../models/Post");
 
 module.exports = {
   getCircuit: async (req, res) => {
+    console.log("getCircuit");
     try {
       const circuitJSON = await Circuit.find({ title: "Canvas Save", user: req.user.id });
       // res.render("profile.ejs", { posts: posts, user: req.user });
