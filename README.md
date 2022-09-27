@@ -75,9 +75,7 @@ NAND-How! is a site that lets you explore, learn and share boolean logic gate sk
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Built With
-
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+<!-- ### Built With
 
 - [![Next][next.js]][next-url]
 - [![React][react.js]][react-url]
@@ -88,23 +86,18 @@ This section should list any major frameworks/libraries used to bootstrap your p
 - [![Bootstrap][bootstrap.com]][bootstrap-url]
 - [![JQuery][jquery.com]][jquery-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 <!-- GETTING STARTED -->
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+If you'd like to get started on your own version of the site, here you go!
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-
+- nodejs
 - npm
-  ```sh
-  npm install npm@latest -g
-  ```
 
 ### Installation
 
@@ -132,13 +125,13 @@ This is an example of how to list things you need to use the software and how to
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Usage
+<!-- ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
 _For more examples, please refer to the [Documentation](https://github.com/gitcyco/nand-how)_
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 <!-- ROADMAP -->
 
@@ -185,7 +178,7 @@ Distributed under the MIT License. See `LICENSE.md` for more information.
 
 ## Contact
 
-Your Name - [@cycoder](https://twitter.com/cycoder)
+Micah Nerren - [@cycoder](https://twitter.com/cycoder)
 
 Project Link: [https://github.com/gitcyco/nand-how](https://github.com/gitcyco/nand-how)
 
