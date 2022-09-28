@@ -1,4 +1,4 @@
-AndSimple = draw2d.shape.basic.Rectangle.extend({
+let AndSimple = draw2d.shape.basic.Rectangle.extend({
   NAME: "AndSimple",
 
   init: function (attr) {
@@ -48,7 +48,7 @@ AndSimple = draw2d.shape.basic.Rectangle.extend({
     let connections = this.getOutputPort(0).getConnections();
     connections.each(
       $.proxy(function (i, conn) {
-        var targetPort = conn.getTarget();
+        let targetPort = conn.getTarget();
         targetPort.setValue(this.value);
         conn.setColor(this.getBackgroundColor());
       }, this)

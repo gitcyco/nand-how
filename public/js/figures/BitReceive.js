@@ -1,4 +1,4 @@
-BitReceive = draw2d.shape.basic.Rectangle.extend({
+let BitReceive = draw2d.shape.basic.Rectangle.extend({
   NAME: "BitReceive",
 
   init: function (attr) {

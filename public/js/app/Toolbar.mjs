@@ -1,3 +1,5 @@
+// import { mainApp } from "/js/app/Application.mjs";
+
 mainApp.Toolbar = Class.extend({
   init: function (elementId, app, view) {
     this.html = $("#" + elementId);

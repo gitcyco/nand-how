@@ -1,4 +1,4 @@
-TriangleFigure = draw2d.shape.basic.Polygon.extend({
+let TriangleFigure = draw2d.shape.basic.Polygon.extend({
   NAME: "TriangleFigure",
   //   VERSION: "1.0",
 
@@ -7,7 +7,7 @@ TriangleFigure = draw2d.shape.basic.Polygon.extend({
 
     this.resetVertices();
 
-    var box = this.getBoundingBox();
+    let box = this.getBoundingBox();
 
     this.addVertex(box.w / 2, 0); // Go to the top center..
     this.addVertex(box.w, box.h); // ...draw line to the right bottom

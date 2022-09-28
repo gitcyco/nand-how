@@ -5,7 +5,7 @@
 // Go to the Designer http://www.draw2d.org
 // to design your own shape or download user generated
 //
-var OrClean = draw2d.SetFigure.extend({
+let OrClean = draw2d.SetFigure.extend({
   NAME: "OrClean",
 
   init: function (attr, setter, getter) {
@@ -15,7 +15,7 @@ var OrClean = draw2d.SetFigure.extend({
     this.colors[false] = "#f00000";
 
     this._super($.extend({ stroke: 0, bgColor: null, width: 58, height: 50.993683632178346 }, attr), setter, getter);
-    var port;
+    let port;
     // output
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(100.9177828722625, 49.02567969069869));
     port.setConnectionDirection();
@@ -44,7 +44,7 @@ var OrClean = draw2d.SetFigure.extend({
   },
 
   createShapeElement: function () {
-    var shape = this._super();
+    let shape = this._super();
     this.originalWidth = 58;
     this.originalHeight = 50.993683632178346;
     return shape;
@@ -91,7 +91,7 @@ var OrClean = draw2d.SetFigure.extend({
   layerGet: function (name, attributes) {
     if (this.svgNodes === null) return null;
 
-    var result = null;
+    let result = null;
     this.svgNodes.some(function (shape) {
       if (shape.data("name") === name) {
         result = shape;
@@ -165,13 +165,13 @@ var OrClean = draw2d.SetFigure.extend({
    * @returns {Object}
    */
   getPersistentAttributes: function () {
-    var memento = this._super();
+    let memento = this._super();
 
     // add all decorations to the memento
     //
     memento.labels = [];
     this.children.each(function (i, e) {
-      var labelJSON = e.figure.getPersistentAttributes();
+      let labelJSON = e.figure.getPersistentAttributes();
       labelJSON.locator = e.locator.NAME;
       memento.labels.push(labelJSON);
     });
@@ -199,13 +199,13 @@ var OrClean = draw2d.SetFigure.extend({
       memento.labels,
       $.proxy(function (i, json) {
         // create the figure stored in the JSON
-        var figure = eval("new " + json.type + "()");
+        let figure = eval("new " + json.type + "()");
 
         // apply all attributes
         figure.attr(json);
 
         // instantiate the locator
-        var locator = eval("new " + json.locator + "()");
+        let locator = eval("new " + json.locator + "()");
 
         // add the new figure as child to this figure
         this.add(figure, locator);

@@ -1,4 +1,4 @@
-var CircuitFigure = draw2d.SetFigure.extend({
+let CircuitFigure = draw2d.SetFigure.extend({
   NAME: "CircuitFigure",
 
   init: function (attr, setter, getter) {

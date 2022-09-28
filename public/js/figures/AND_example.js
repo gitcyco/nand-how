@@ -4,15 +4,15 @@
 // created with http://www.draw2d.org
 //
 //
-var circuit_digital_gate_DIN40700_AND = CircuitFigure.extend({
+let circuit_digital_gate_DIN40700_AND = CircuitFigure.extend({
   NAME: "circuit_digital_gate_DIN40700_AND",
   VERSION: "2.0.343_1136",
 
   init: function (attr, setter, getter) {
-    var _this = this;
+    let _this = this;
 
     this._super($.extend({ stroke: 0, bgColor: null, width: 25, height: 40 }, attr), setter, getter);
-    var port;
+    let port;
     // output
     port = this.addPort(
       new DecoratedOutputPort(),
@@ -43,7 +43,7 @@ var circuit_digital_gate_DIN40700_AND = CircuitFigure.extend({
   },
 
   createShapeElement: function () {
-    var shape = this._super();
+    let shape = this._super();
     this.originalWidth = 25;
     this.originalHeight = 40;
     return shape;
@@ -51,7 +51,7 @@ var circuit_digital_gate_DIN40700_AND = CircuitFigure.extend({
 
   createSet: function () {
     this.canvas.paper.setStart();
-    var shape = null;
+    let shape = null;
     // BoundingBox
     shape = this.canvas.paper.path("M0,0 L25,0 L25,40 L0,40");
     shape.attr({ stroke: "none", "stroke-width": 0, fill: "none" });
@@ -98,13 +98,13 @@ circuit_digital_gate_DIN40700_AND = circuit_digital_gate_DIN40700_AND.extend({
   /**
    *  Called by the simulator for every calculation
    *  loop
-   *  @param {Object} context context where objects can store or handover global variables to other objects.
+   *  @param {Object} context context where objects can store or handover global letiables to other objects.
    *  @required
    **/
   calculate: function (context) {
-    var i1 = this.getInputPort(0);
-    var i2 = this.getInputPort(1);
-    var o1 = this.getOutputPort(0);
+    let i1 = this.getInputPort(0);
+    let i2 = this.getInputPort(1);
+    let o1 = this.getOutputPort(0);
 
     o1.setValue(i1.getBooleanValue() && i2.getBooleanValue());
   },

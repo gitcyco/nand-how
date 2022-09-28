@@ -1,4 +1,4 @@
-BitSend = draw2d.shape.basic.Rectangle.extend({
+let BitSend = draw2d.shape.basic.Rectangle.extend({
   NAME: "BitSend",
 
   init: function (attr) {
@@ -34,7 +34,7 @@ BitSend = draw2d.shape.basic.Rectangle.extend({
     let connections = this.getOutputPort("output").getConnections();
     connections.each(
       $.proxy(function (i, conn) {
-        var targetPort = conn.getTarget();
+        let targetPort = conn.getTarget();
         targetPort.setValue(this.value);
         conn.setColor(this.getBackgroundColor());
         // conn.setRouter(defaultRouter);

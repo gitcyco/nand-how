@@ -125,3 +125,5 @@ mainApp.Application = Class.extend({
     return conn;
   },
 });
+
+export { mainApp };
