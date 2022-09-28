@@ -16,7 +16,7 @@ let toolbarObj = {
     // Inject the UNDO Button and the callbacks
     //
     // this.undoButton = $("<button>Undo</button>");
-    this.undoButton = $("<li><a>Undo</a></li>");
+    this.undoButton = $("<li><a>Undos</a></li>");
     this.html.append(this.undoButton);
     this.undoButton.css("color", "#999");
     this.undoButton.focus(function () {
@@ -33,7 +33,7 @@ let toolbarObj = {
     // Inject the REDO Button and the callback
     //
     // this.redoButton = $("<button>Redo</button>");
-    this.redoButton = $("<li><a>Redo</a></li>");
+    this.redoButton = $("<li><a>Redos</a></li>");
     this.html.append(this.redoButton);
     this.redoButton.css("color", "#999");
     this.redoButton.button().click(

@@ -1,7 +1,7 @@
 // import { mainApp } from "/js/app/Application.mjs";
 
 // mainApp.View = draw2d.Canvas.extend({
-viewObj = {
+let viewObj = {
   init: function (id) {
     // this._super(id, 2000, 2000);
     this._super(id);

@@ -1,3 +1,7 @@
+// import { appObj } from "/js/app/Application.mjs";
+import { viewObj } from "/js/app/View.mjs";
+import { toolbarObj } from "/js/app/Toolbar.mjs";
+
 // declare the namespace for this example
 let mainApp = {};
 
@@ -23,6 +27,7 @@ let appObj = {
    * @param {String} canvasId the id of the DOM element to use as paint container
    */
   init: function () {
+    console.log("mainApp", mainApp);
     this.view = new mainApp.View("main-canvas");
 
     this.toolbar = new mainApp.Toolbar("ul-toolbar", this, this.view);
@@ -127,4 +132,9 @@ let appObj = {
   },
 };
 
-export { appObj };
+// Create the main application instance
+mainApp.Toolbar = Class.extend(toolbarObj);
+mainApp.View = draw2d.Canvas.extend(viewObj);
+mainApp.Application = Class.extend(appObj);
+
+export { mainApp };

@@ -1,19 +1,22 @@
-import { appObj } from "/js/app/Application.mjs";
-import { viewObj } from "/js/app/View.mjs";
-import { toolbarObj } from "/js/app/Toolbar.mjs";
+import { mainApp } from "/js/app/Application.mjs";
+
+// import { viewObj } from "/js/app/View.mjs";
+// import { toolbarObj } from "/js/app/Toolbar.mjs";
 
 // declare the namespace for the main application
-let mainApp = {};
+// let mainApp = {};
+//
+// let defaultRouterClassName = "draw2d.layout.connection.CircuitConnectionRouter";
+// let defaultRouter = new draw2d.layout.connection.CircuitConnectionRouter();
+// defaultRouter.setBridgeRadius(5);
+// defaultRouter.abortRoutingOnFirstVertexNode = false;
 
-let defaultRouterClassName = "draw2d.layout.connection.CircuitConnectionRouter";
-let defaultRouter = new draw2d.layout.connection.CircuitConnectionRouter();
-defaultRouter.setBridgeRadius(5);
-defaultRouter.abortRoutingOnFirstVertexNode = false;
+// // Create the main application instance
+// mainApp.Toolbar = Class.extend(toolbarObj);
+// mainApp.View = draw2d.Canvas.extend(viewObj);
+// mainApp.Application = Class.extend(appObj);
 
-// Create the main application instance
-mainApp.Application = Class.extend(appObj);
-mainApp.View = draw2d.Canvas.extend(viewObj);
-mainApp.Toolbar = Class.extend(toolbarObj);
+// console.log("mainApp:", mainApp);
 
 // Instantiate the container class for main drawing application
 const app = new mainApp.Application();
@@ -171,4 +174,4 @@ async function putCanvasJSON(canvasJSON) {
   }
 }
 
-export { app };
+// export { app };
