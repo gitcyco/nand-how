@@ -1,6 +1,7 @@
 // import { mainApp } from "/js/app/Application.mjs";
 
-mainApp.Toolbar = Class.extend({
+// mainApp.Toolbar = Class.extend({
+let toolbarObj = {
   init: function (elementId, app, view) {
     this.html = $("#" + elementId);
     this.view = view;
@@ -109,4 +110,6 @@ mainApp.Toolbar = Class.extend({
     // this.undoButton.button("option", "disabled", !event.getStack().canUndo());
     // this.redoButton.button("option", "disabled", !event.getStack().canRedo());
   },
-});
+};
+
+export { toolbarObj };

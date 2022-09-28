@@ -1,6 +1,7 @@
-import { mainApp } from "/js/app/Application.mjs";
+// import { mainApp } from "/js/app/Application.mjs";
 
-mainApp.View = draw2d.Canvas.extend({
+// mainApp.View = draw2d.Canvas.extend({
+viewObj = {
   init: function (id) {
     // this._super(id, 2000, 2000);
     this._super(id);
@@ -36,4 +37,6 @@ mainApp.View = draw2d.Canvas.extend({
     // var command = new draw2d.command.CommandAdd(this, figure, x, y);
     // this.getCommandStack().execute(command);
   },
-});
+};
+
+export { viewObj };

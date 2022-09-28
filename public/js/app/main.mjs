@@ -1,4 +1,19 @@
-import { mainApp } from "/js/app/Application.mjs";
+import { appObj } from "/js/app/Application.mjs";
+import { viewObj } from "/js/app/View.mjs";
+import { toolbarObj } from "/js/app/Toolbar.mjs";
+
+// declare the namespace for the main application
+let mainApp = {};
+
+let defaultRouterClassName = "draw2d.layout.connection.CircuitConnectionRouter";
+let defaultRouter = new draw2d.layout.connection.CircuitConnectionRouter();
+defaultRouter.setBridgeRadius(5);
+defaultRouter.abortRoutingOnFirstVertexNode = false;
+
+// Create the main application instance
+mainApp.Application = Class.extend(appObj);
+mainApp.View = draw2d.Canvas.extend(viewObj);
+mainApp.Toolbar = Class.extend(toolbarObj);
 
 // Instantiate the container class for main drawing application
 const app = new mainApp.Application();

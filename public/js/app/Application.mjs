@@ -13,7 +13,8 @@ defaultRouter.abortRoutingOnFirstVertexNode = false;
  * @author Micah Nerren
  * @extends draw2d.ui.parts.GraphicalEditor
  */
-mainApp.Application = Class.extend({
+// mainApp.Application = Class.extend({
+let appObj = {
   NAME: "mainApp.Application",
 
   /**
@@ -124,6 +125,6 @@ mainApp.Application = Class.extend({
     // this.view.getCommandStack().notifyListeners(null, draw2d.command.CommandStack.POST_EXECUTE);
     return conn;
   },
-});
+};
 
-export { mainApp };
+export { appObj };
