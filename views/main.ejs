@@ -73,7 +73,7 @@
                     </a>
                     <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center ">
                         <li class="nav-item">
-                            <a href="#" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="AND" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
                                 <img class="svg-icons" src = "/svg/AND.svg" alt="AND"/>
                             </a>
                         </li>
@@ -83,40 +83,39 @@
                             </svg>                              
                         </li> -->
                         <li class="nav-item">
-                            <a href="#" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="NAND" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
                                 <img class="svg-icons" src = "/svg/NAND.svg" alt="NAND"/>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="OR" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
                                 <img class="svg-icons" src = "/svg/OR.svg" alt="OR"/>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="NOR" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
                                 <img class="svg-icons" src = "/svg/NOR.svg" alt="NOR"/>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="XOR" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
                                 <img class="svg-icons" src = "/svg/XOR.svg" alt="XOR"/>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="XNOR" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
                                 <img class="svg-icons" src = "/svg/XNOR.svg" alt="XNOR"/>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="NOT" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
                                 <img class="svg-icons" src = "/svg/NOT.svg" alt="NOT"/>
                             </a>
                         </li>
                         <li class="nav-item" style="height: 20px"></li>
                         <li class="nav-item">
-                            <a href="#" class="d-block xxxp-3 link-dark text-decoration-none text-light svg-icons" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="SAVE/LOAD" class="d-block xxxp-3 link-dark text-decoration-none text-light svg-icons" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
                                     <i class="fa-solid fa-floppy-disk fa-xl" data-mdb-toggle="modal" data-mdb-target="#saveLoadModal"></i>
-                                    <i class="fa-solid fa-floppy-disk fa-xl" data-mdb-toggle="modal" data-mdb-target="#loginModal"></i>
                             </a>
                         </li>
                         <!-- <li class="nav-item">
@@ -140,7 +139,7 @@
                             </a>
                         </li> -->
                     </ul>
-                    <div class="dropdown">
+                    <!-- <div class="dropdown">
                         <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi-person-circle h2"></i>
                         </a>
@@ -149,7 +148,7 @@
                             <li><a class="dropdown-item" href="#">Settings</a></li>
                             <li><a class="dropdown-item" href="#">Profile</a></li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-sm p-3 xxxmin-vh-100">
@@ -327,7 +326,7 @@
                 <!-- Pills content -->
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="pills-save" role="tabpanel" aria-labelledby="tab-save">
-                        <form action="/login" method="POST">
+                        <form >
                             <div class="text-center mb-3">
                                 <p>Save sketch</p>
                             </div>
@@ -338,31 +337,10 @@
                                 <label class="form-label" for="saveName">Save Name</label>
                             </div>
 
-                            <!-- Password input -->
-                            <div class="form-outline mb-4">
-                                <input type="password" id="save2" class="form-control" name="save2" />
-                                <label class="form-label" for="save2">Password</label>
-                            </div>
-
-                            <!-- 2 column grid layout -->
-                            <div class="row mb-4">
-                                <div class="col-md-6 d-flex justify-content-center">
-                                    <!-- Checkbox -->
-                                    <div class="form-check mb-3 mb-md-0">
-                                        <input class="form-check-input" type="checkbox" value="" id="save3" checked />
-                                        <label class="form-check-label" for="save3"> Remember me </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 d-flex justify-content-center">
-                                    <!-- Simple link -->
-                                    <a href="#!">Forgot password?</a>
-                                </div>
-                            </div>
-
                             <!-- Submit button -->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="button" id="save-sketch-button" class="btn btn-primary" data-mdb-dismiss="modal">Save</button>
                             </div>
 
                             <!-- Submit button -->
@@ -415,7 +393,7 @@
                             <!-- Submit button -->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Load Sketch</button>
+                                <button type="button" class="btn btn-primary" data-mdb-dismiss="modal">Load Sketch</button>
                             </div>
                             
                             <!-- Submit button -->

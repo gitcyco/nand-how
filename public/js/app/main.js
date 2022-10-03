@@ -33,24 +33,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // let AND = new circuit_digital_gate_DIN40700_AND({ x: 150, y: 150, width: 100, height: 140 });
 
-  const exportLink = document.getElementById("export-json");
-  exportLink.addEventListener("click", (e) => exportJSON(e, canvas));
+  //   const exportLink = document.getElementById("export-json");
+  //   exportLink.addEventListener("click", (e) => exportJSON(e, canvas));
+  //
+  //   const importLink = document.getElementById("import-json");
+  //   importLink.addEventListener("click", (e) => importJSON(e, canvas));
+  //
+  //   const addTriangle = document.getElementById("add-triangle");
+  //   addTriangle.addEventListener("click", (e) => addShape(e, canvas));
+  //
+  //   const downloadCanvas = document.getElementById("download-canvas");
+  //   downloadCanvas.addEventListener("click", (e) => getCanvasImage(e, canvas, downloadCanvas));
+  //
+  //   const zoomIn = document.getElementById("side-zoom-in");
+  //   zoomIn.addEventListener("click", (e) => zoomInHandler(e, canvas, zoomIn));
+  //
+  //   const zoomOut = document.getElementById("side-zoom-out");
+  //   zoomOut.addEventListener("click", (e) => zoomOutHandler(e, canvas, zoomOut));
 
-  const importLink = document.getElementById("import-json");
-  importLink.addEventListener("click", (e) => importJSON(e, canvas));
-
-  const addTriangle = document.getElementById("add-triangle");
-  addTriangle.addEventListener("click", (e) => addShape(e, canvas));
-
-  const downloadCanvas = document.getElementById("download-canvas");
-  downloadCanvas.addEventListener("click", (e) => getCanvasImage(e, canvas, downloadCanvas));
-
-  const zoomIn = document.getElementById("side-zoom-in");
-  zoomIn.addEventListener("click", (e) => zoomInHandler(e, canvas, zoomIn));
-
-  const zoomOut = document.getElementById("side-zoom-out");
-  zoomOut.addEventListener("click", (e) => zoomOutHandler(e, canvas, zoomOut));
+  const saveSketch = document.getElementById("save-sketch-button");
+  saveSketch.addEventListener("click", (e) => saveSketchHandler(e, canvas));
 });
+
+async function saveSketchHandler(event, canvas) {
+  const saveName = document.getElementById("saveName").value;
+  console.log("SAVE", saveName);
+  document.getElementById("saveName").value = "";
+}
 
 function zoomInHandler(event, canvas, zoomIn) {
   canvas.setZoom(canvas.getZoom() * 0.7, true);
