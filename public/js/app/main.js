@@ -57,7 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function saveSketchHandler(event, canvas) {
   const saveName = document.getElementById("saveName").value;
-  console.log("SAVE", saveName);
+  // console.log("SAVE", saveName);
+  const canvasJSON = getCanvasJSON(canvas);
+  putCanvasJSON(canvasJSON, saveName);
   document.getElementById("saveName").value = "";
 }
 
@@ -142,16 +144,16 @@ function getCanvasJSON(canvas) {
   return canvasJSON;
 }
 
-async function putCanvasJSON(canvasJSON) {
+async function putCanvasJSON(canvasJSON, sketchTitle) {
   // const ticketId = this.parentNode.dataset.id;
-  console.log("CHECK:", JSON.parse(canvasJSON));
+  // console.log("CHECK:", JSON.parse(canvasJSON));
   //   return;
   try {
     const response = await fetch("circuits/createCircuit", {
       method: "put",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({
-        title: "Canvas Save",
+        title: sketchTitle,
         canvas: canvasJSON,
       }),
     });

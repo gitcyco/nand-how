@@ -7,7 +7,6 @@ module.exports = {
     console.log("getCircuit");
     try {
       const circuitJSON = await Circuit.find({ title: "Canvas Save", user: req.user.id });
-      // res.render("profile.ejs", { posts: posts, user: req.user });
       res.json(circuitJSON);
     } catch (err) {
       console.log(err);
@@ -48,20 +47,20 @@ module.exports = {
       // Upload image to cloudinary
       // const result = await cloudinary.uploader.upload(req.file.path);
       console.log("BEFORE: ", req.body);
-      await Circuit.findOneAndUpdate(
-        { title: req.body.title, user: req.user.id },
-        {
-          title: req.body.title,
-          user: req.user.id,
-          canvas: req.body.canvas,
-        },
-        { upsert: true }
-      );
-      // await Circuit.create({
-      //   title: req.body.title,
-      //   user: req.user.id,
-      //   canvas: req.body.canvas,
-      // });
+      // await Circuit.findOneAndUpdate(
+      //   { title: req.body.title, user: req.user.id },
+      //   {
+      //     title: req.body.title,
+      //     user: req.user.id,
+      //     canvas: req.body.canvas,
+      //   },
+      //   { upsert: true }
+      // );
+      await Circuit.create({
+        title: req.body.title,
+        user: req.user.id,
+        canvas: req.body.canvas,
+      });
       console.log("RECEIVED JSON:", req.body);
       // res.redirect("/main");
     } catch (err) {
