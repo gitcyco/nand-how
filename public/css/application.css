@@ -4,7 +4,7 @@ body {
   color: #6b6b6b;
 }
 
-input {
+/* input {
   background: none repeat scroll 0 0 #f8f8f8;
   border-color: #c6c6c6 #dadada #eaeaea;
   border-radius: 4px 4px 4px 4px;
@@ -16,7 +16,7 @@ input {
   height: 25px;
   font-size: 14px;
   line-height: 25px;
-}
+} */
 
 #container {
   padding: 0px;
