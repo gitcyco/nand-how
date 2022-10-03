@@ -56,10 +56,24 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function saveSketchHandler(event, canvas) {
+  // create a PNG image of the canvas
+  const writer = new draw2d.io.png.Writer();
+  let pngImage;
+
+  writer.marshal(canvas, function (png) {
+    console.log("PNG:", png);
+    pngImage = png;
+  });
+
   const saveName = document.getElementById("saveName").value;
-  // console.log("SAVE", saveName);
+
+  // Grab a JSON representation of the canvas
   const canvasJSON = getCanvasJSON(canvas);
-  putCanvasJSON(canvasJSON, saveName);
+
+  // Send the canvas to the server with a screenshot
+  putCanvasJSON(canvasJSON, saveName, pngImage);
+
+  // Clear the form before it closes
   document.getElementById("saveName").value = "";
 }
 
@@ -144,10 +158,7 @@ function getCanvasJSON(canvas) {
   return canvasJSON;
 }
 
-async function putCanvasJSON(canvasJSON, sketchTitle) {
-  // const ticketId = this.parentNode.dataset.id;
-  // console.log("CHECK:", JSON.parse(canvasJSON));
-  //   return;
+async function putCanvasJSON(canvasJSON, sketchTitle, png) {
   try {
     const response = await fetch("circuits/createCircuit", {
       method: "put",
@@ -155,6 +166,7 @@ async function putCanvasJSON(canvasJSON, sketchTitle) {
       body: JSON.stringify({
         title: sketchTitle,
         canvas: canvasJSON,
+        image: png,
       }),
     });
     const data = await response.json();

@@ -13,6 +13,14 @@ const CircuitSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  image: {
+    type: String,
+    require: false,
+  },
+  cloudinaryId: {
+    type: String,
+    require: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

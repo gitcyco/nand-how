@@ -46,7 +46,9 @@ module.exports = {
     try {
       // Upload image to cloudinary
       // const result = await cloudinary.uploader.upload(req.file.path);
-      console.log("BEFORE: ", req.body);
+
+      // console.log("BEFORE: ", req.body);
+
       // await Circuit.findOneAndUpdate(
       //   { title: req.body.title, user: req.user.id },
       //   {
@@ -56,12 +58,18 @@ module.exports = {
       //   },
       //   { upsert: true }
       // );
+
+      // Upload image to cloudinary
+      const result = await cloudinary.uploader.upload(req.body.image);
+
       await Circuit.create({
         title: req.body.title,
         user: req.user.id,
         canvas: req.body.canvas,
+        image: result.secure_url,
+        cloudinaryId: result.public_id,
       });
-      console.log("RECEIVED JSON:", req.body);
+      // console.log("RECEIVED JSON:", req.body);
       // res.redirect("/main");
     } catch (err) {
       console.log(err);
