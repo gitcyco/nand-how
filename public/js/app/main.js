@@ -53,6 +53,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const saveSketch = document.getElementById("save-sketch-button");
   saveSketch.addEventListener("click", (e) => saveSketchHandler(e, canvas));
+
+  const getAllCircuitsButton = document.getElementById("load-sketch-button");
+  getAllCircuitsButton.addEventListener("click", (e) => getAllCircuitsHandler(e));
 });
 
 async function saveSketchHandler(event, canvas) {
@@ -174,5 +177,15 @@ async function putCanvasJSON(canvasJSON, sketchTitle, png) {
     location.reload();
   } catch (err) {
     console.log(err);
+  }
+}
+
+async function getAllCircuitsHandler() {
+  try {
+    const response = await fetch("circuits/listCircuits");
+    const data = await response.json();
+    console.log("DATA:", data);
+  } catch (error) {
+    console.log(error);
   }
 }

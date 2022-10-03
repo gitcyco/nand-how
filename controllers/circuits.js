@@ -1,51 +1,32 @@
 const cloudinary = require("../middleware/cloudinary");
 const Circuit = require("../models/Circuit");
-const Post = require("../models/Post");
+// const Post = require("../models/Post");
 
 module.exports = {
+  listCircuits: async (req, res) => {
+    console.log("listcircuits");
+    try {
+      const circuits = await Circuit.find({ user: req.user.id });
+      res.json(circuits);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   getCircuit: async (req, res) => {
     console.log("getCircuit");
     try {
+      // const circuitJSON = await Circuit.find({ title: "Canvas Save", user: req.user.id });
       const circuitJSON = await Circuit.find({ title: "Canvas Save", user: req.user.id });
       res.json(circuitJSON);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   },
-  getPublicProfile: async (req, res) => {
-    try {
-      const posts = await Post.find({});
-      res.render("profile.ejs", { posts: posts, user: req.user });
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  getFeed: async (req, res) => {
-    try {
-      const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-      res.render("feed.ejs", { posts: posts });
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  getPost: async (req, res) => {
-    try {
-      const post = await Post.findById(req.params.id);
-      res.render("post.ejs", { post: post, user: req.user });
-    } catch (err) {
-      console.log(err);
-    }
-  },
-
-  //   MyModel.findOneAndUpdate(query, req.newData, {upsert: true}, function(err, doc) {
-  //     if (err) return res.send(500, {error: err});
-  //     return res.send('Succesfully saved.');
-  // });
 
   createCircuit: async (req, res) => {
     try {
-      // Upload image to cloudinary
-      // const result = await cloudinary.uploader.upload(req.file.path);
+      console.log("createCircuit");
 
       // console.log("BEFORE: ", req.body);
 
@@ -60,7 +41,7 @@ module.exports = {
       // );
 
       // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.body.image);
+      const result = await cloudinary.uploader.upload(req.body.image, { effect: "trim" });
 
       await Circuit.create({
         title: req.body.title,
@@ -70,36 +51,23 @@ module.exports = {
         cloudinaryId: result.public_id,
       });
       // console.log("RECEIVED JSON:", req.body);
-      // res.redirect("/main");
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   },
-  likePost: async (req, res) => {
-    try {
-      await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { likes: 1 },
-        }
-      );
-      console.log("Likes +1");
-      res.redirect(`/post/${req.params.id}`);
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  deletePost: async (req, res) => {
+
+  deleteCircuit: async (req, res) => {
+    console.log("deleteCircuit");
     try {
       // Find post by id
-      let post = await Post.findById({ _id: req.params.id });
+      let post = await Circuit.findById({ _id: req.params.id });
       // Delete image from cloudinary
       await cloudinary.uploader.destroy(post.cloudinaryId);
       // Delete post from db
       await Post.remove({ _id: req.params.id });
       console.log("Deleted Post");
       res.redirect("/profile");
-    } catch (err) {
+    } catch (error) {
       res.redirect("/profile");
     }
   },

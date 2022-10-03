@@ -350,7 +350,7 @@
                         </form>
                     </div>
                     <div class="tab-pane fade" id="pills-load" role="tabpanel" aria-labelledby="tab-load">
-                        <form action="/signup" method="POST">
+                        <form >
                             <div class="text-center mb-3">
                                 <p>Sign up with:</p>
                             </div>
@@ -369,31 +369,10 @@
                                 <label class="form-label" for="load2">Email</label>
                             </div>
 
-                            <!-- Password input -->
-                            <div class="form-outline mb-4">
-                                <input type="password" id="load3" class="form-control" name="password"/>
-                                <label class="form-label" for="load3">Password</label>
-                            </div>
-
-                            <!-- Repeat Password input -->
-                            <div class="form-outline mb-4">
-                                <input type="password" id="load4" class="form-control" name="confirmPassword"/>
-                                <label class="form-label" for="load4">Repeat password</label>
-                            </div>
-
-                            <!-- Checkbox -->
-                            <div class="form-check d-flex justify-content-center mb-4">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="load5" checked
-                                    aria-describedby="registerCheckHelpText" />
-                                <label class="form-check-label" for="load5">
-                                    I have read and agree to the terms
-                                </label>
-                            </div>
-
                             <!-- Submit button -->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" data-mdb-dismiss="modal">Load Sketch</button>
+                                <button type="button" id="load-sketch-button" class="btn btn-primary" data-mdb-dismiss="modal">Load Sketch</button>
                             </div>
                             
                             <!-- Submit button -->
