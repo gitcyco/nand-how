@@ -15,21 +15,21 @@ document.addEventListener("DOMContentLoaded", function () {
   // canvas.add(msg, 20, 20);
 
   // bitSend is a bit initiator, toggle 0/1, false/true, off/on, red/green
-  let bitSend = new BitSend({ x: 125, y: 150, width: 20, height: 20 });
-  canvas.add(bitSend, 50, 50);
+  // let bitSend = new BitSend({ x: 125, y: 150, width: 20, height: 20 });
+  // canvas.add(bitSend, 50, 50);
 
   // bitSend is a bit initiator, toggle 0/1, true/false, on/off, red/green
-  canvas.add(new BitSend({ x: 125, y: 150, width: 20, height: 20 }), 80, 50);
+  // canvas.add(new BitSend({ x: 125, y: 150, width: 20, height: 20 }), 80, 50);
 
   // bitReceive is a bit receiver, it displays its input bit as red/green, 0/1, false/true, off/on
-  let bitReceive = new BitReceive({ x: 175, y: 200, width: 20, height: 20 });
-  canvas.add(bitReceive, 50, 150);
+  // let bitReceive = new BitReceive({ x: 175, y: 200, width: 20, height: 20 });
+  // canvas.add(bitReceive, 50, 150);
 
   // let andSimple = new AndSimple({ x: 175, y: 200, width: 70, height: 70 });
   // canvas.add(andSimple, 150, 250);
 
-  let andClean = new AndClean({ x: 275, y: 250, width: 70, height: 70 });
-  canvas.add(andClean, 150, 250);
+  // let andClean = new AndClean({ x: 275, y: 250, width: 70, height: 70 });
+  // canvas.add(andClean, 150, 250);
 
   // let AND = new circuit_digital_gate_DIN40700_AND({ x: 150, y: 150, width: 100, height: 140 });
 
@@ -55,12 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
   circuitElements.forEach((element) => {
     element.addEventListener("click", (e) => insertElement(e, canvas, element.dataset.circuit));
   });
-
-  //   const insertAndButton = document.getElementById("insert-and");
-  //   insertAndButton.addEventListener("click", (e) => insertElement(e, canvas, "AND"));
-  //
-  //   const insertNandButton = document.getElementById("insert-nand");
-  //   insertNandButton.addEventListener("click", (e) => insertElement(e, canvas, "NAND"));
 
   const saveSketch = document.getElementById("save-sketch-button");
   saveSketch.addEventListener("click", (e) => saveSketchHandler(e, canvas));
@@ -118,6 +112,7 @@ function insertElement(e, canvas, circuitType) {
   }
 }
 
+//
 async function saveSketchHandler(event, canvas) {
   // create a PNG image of the canvas
   const writer = new draw2d.io.png.Writer();
@@ -149,6 +144,7 @@ function zoomOutHandler(event, canvas, zoomOut) {
   canvas.setZoom(canvas.getZoom() * 1.3, true);
 }
 
+// Test function for grabbing an image and downloading it
 function getCanvasImage(event, canvas, element) {
   console.log("DOWNLOAD!", canvas);
 
@@ -212,6 +208,7 @@ function displayJSON(canvas) {
   });
 }
 
+// Utility function to grab a JSON export of the current canvas
 function getCanvasJSON(canvas) {
   const writer = new draw2d.io.json.Writer();
   let canvasJSON = {};
@@ -222,6 +219,7 @@ function getCanvasJSON(canvas) {
   return canvasJSON;
 }
 
+// This saves a JSON sketch to the database along with a screenshot of the current canvas
 async function putCanvasJSON(canvasJSON, sketchTitle, png) {
   try {
     const response = await fetch("circuits/createCircuit", {
@@ -241,6 +239,7 @@ async function putCanvasJSON(canvasJSON, sketchTitle, png) {
   }
 }
 
+// This populates the Load dialogue and configures the buttons with the proper ID's
 async function getAllCircuitsHandler(event, canvas) {
   try {
     const canvas = app.view;
