@@ -1,12 +1,12 @@
-// Generated Code for the Draw2D touch HTML5 lib
+// ATTENTION:
 //
-// http://www.draw2d.org
 //
-// Go to the Designer http://www.draw2d.org
-// to design your own shape or download user generated
 //
-let XorClean = draw2d.SetFigure.extend({
-  NAME: "XorClean",
+// FIX THIS, it is currently XOR, not NOR
+//
+
+let NorClean = draw2d.SetFigure.extend({
+  NAME: "NorClean",
 
   init: function (attr, setter, getter) {
     this.value = false;
@@ -235,7 +235,7 @@ let XorClean = draw2d.SetFigure.extend({
  *
  *
  */
-XorClean = XorClean.extend({
+NorClean = NorClean.extend({
   init: function (attr, setter, getter) {
     this._super(attr, setter, getter);
 

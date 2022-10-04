@@ -1,10 +1,3 @@
-// Generated Code for the Draw2D touch HTML5 lib
-//
-// http://www.draw2d.org
-//
-// Go to the Designer http://www.draw2d.org
-// to design your own shape or download user generated
-//
 let NandClean = draw2d.SetFigure.extend({
   NAME: "NandClean",
 
@@ -14,32 +7,44 @@ let NandClean = draw2d.SetFigure.extend({
     this.colors[true] = "#00f000";
     this.colors[false] = "#f00000";
 
-    this._super($.extend({ stroke: 0, bgColor: null, width: 60, height: 39.999999999999886 }, attr), setter, getter);
+    this._super($.extend({ stroke: 0, bgColor: null, width: 60, height: 40 }, attr), setter, getter);
     let port;
-    // Port
-    port = this.addPort(
-      new DecoratedInputPort(),
-      new draw2d.layout.locator.XYRelPortLocator(-8.333333333333334, 12.500000000000036)
-    );
+    // Port0
+    port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(-8.33, 12.5));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("input1");
+    port.setName("input0");
     port.setMaxFanOut(20);
-    // Port
+    console.log("INPUT0 Default Value:", port.getValue());
+    port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
+    // Alternatively you register for this event with:
+    port.on("connect", this.onConnect);
+
+    // Port1
     port = this.addPort(
       new DecoratedInputPort(),
       new draw2d.layout.locator.XYRelPortLocator(-8.333333333333334, 87.50000000000026)
     );
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("input2");
+    port.setName("input1");
     port.setMaxFanOut(20);
-    // Port
+    console.log("INPUT1 Default Value:", port.getValue());
+    port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
+    // Alternatively you register for this event with:
+    port.on("connect", this.onConnect);
+
+    // Port Out
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(108.33333333333334, 50.00000000000014));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
     port.setName("output");
     port.setMaxFanOut(20);
+    console.log("OUTPUT Default Value:", port.getValue());
+    port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
+    // Alternatively you register for this event with:
+    port.on("connect", this.onConnect);
+
     this.persistPorts = false;
   },
 
@@ -211,6 +216,75 @@ let NandClean = draw2d.SetFigure.extend({
         this.add(figure, locator);
       }, this)
     );
+  },
+  /**
+   * @method
+   * Called if the value of any port has been changed
+   *
+   * @param {draw2d.Port} relatedPort
+   * @template
+   */
+  onPortValueChanged: function (relatedPort) {
+    // call the timer manually. In this case we are safe and we
+    // didn'T lost any data...
+    // this.onTimer();
+
+    // console.log("ME:", this);
+    // this.setBackgroundColor(this.colors[this.value]);
+
+    // this.setColor("#111111");
+
+    let i0 = this.getInputPort("input0");
+    let i1 = this.getInputPort("input1");
+    let o1 = this.getOutputPort("output");
+
+    i0.setValue(i0.getValue() === null ? false : i0.getValue());
+    i1.setValue(i1.getValue() === null ? false : i1.getValue());
+
+    const input0 = i0.getValue() === null ? false : i0.getValue();
+    const input1 = i1.getValue() === null ? false : i1.getValue();
+    const output = !(input0 && input1);
+
+    // if (i0.getValue() === null || i1.getValue() === null || o1.getValue === null) {
+    //   console.log("NULL start values, return");
+    //   return;
+    // }
+    o1.setValue(output);
+    // o1.setValue(i0.getValue() && i1.getValue());
+    // console.log("output, AND VAL:", input0, input1, output, o1.getValue());
+
+    this.value = o1.getValue();
+    // this.setBackgroundColor(this.colors[this.value]);
+    let connections = this.getOutputPort("output").getConnections();
+    connections.each(
+      $.proxy(function (i, conn) {
+        let sourcePort = conn.getSource();
+        // console.log("SOURCE PORT:", sourcePort);
+        let targetPort = conn.getTarget();
+        // console.log("TARGET PORT:", targetPort);
+        targetPort.setValue(this.value);
+        targetPort.setColor(this.colors[this.value]);
+        conn.setColor(this.colors[this.value]);
+      }, this)
+    );
+  },
+  /**
+   * @method
+   * Called if the value of any port has been changed
+   *
+   * @param {draw2d.Connection} connection
+   * @template
+   */
+  onConnect: function (event, connection) {
+    // console.log("CONNECTED!", event, connection);
+  },
+  onClick: function (e) {
+    // console.log("ME:", this);
+    // // for (let obj in this) {
+    // //   console.log(obj);
+    // // }
+    // this.color = "#F1F1F1";
+    // console.log(this.color, this.bgColor);
   },
 });
 

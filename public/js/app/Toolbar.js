@@ -21,7 +21,7 @@ mainApp.Toolbar = Class.extend({
     });
     this.undoButton.button().click(
       $.proxy(function () {
-        console.log("UNDO CLICKED");
+        // console.log("UNDO CLICKED");
         this.view.getCommandStack().undo();
       }, this)
     );
@@ -93,14 +93,14 @@ mainApp.Toolbar = Class.extend({
     this.redoButton.focus(function () {
       $(this).removeClass("ui-state-focus");
     });
-    console.log("stackChanged!", event.getStack().canUndo(), event.getStack().canRedo(), this.undoButton);
+    // console.log("stackChanged!", event.getStack().canUndo(), event.getStack().canRedo(), this.undoButton);
     if (!event.getStack().canUndo()) {
-      console.log("CANNOT UNDO");
+      // console.log("CANNOT UNDO");
       this.undoButton.prop("disabled", true).css("color", "#999");
       //   this.undoButton.button("option", "disabled", true);
     } else this.undoButton.prop("disabled", false).css("color", "");
     if (!event.getStack().canRedo()) {
-      console.log("CANNOT REDO");
+      // console.log("CANNOT REDO");
       this.redoButton.prop("disabled", true).css("color", "#999");
     } else this.redoButton.prop("disabled", false).css("color", "");
 

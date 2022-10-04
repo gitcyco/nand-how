@@ -1,10 +1,9 @@
-// Generated Code for the Draw2D touch HTML5 lib
+// To do:
 //
-// http://www.draw2d.org
+// NEED TO FIX PORT ORIENTATION
+// Currently the port connection direction is rotated -45 from where it should be
 //
-// Go to the Designer http://www.draw2d.org
-// to design your own shape or download user generated
-//
+
 let OrClean = draw2d.SetFigure.extend({
   NAME: "OrClean",
 
@@ -14,32 +13,42 @@ let OrClean = draw2d.SetFigure.extend({
     this.colors[true] = "#00f000";
     this.colors[false] = "#f00000";
 
-    this._super($.extend({ stroke: 0, bgColor: null, width: 58, height: 50.993683632178346 }, attr), setter, getter);
+    this._super($.extend({ stroke: 0, bgColor: null, width: 58, height: 50.993 }, attr), setter, getter);
     let port;
-    // output
-    port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(100.9177828722625, 49.02567969069869));
+
+    // input0
+    port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(27.586, 27.454));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
-    port.setName("output");
+    port.setName("input0");
     port.setMaxFanOut(20);
-    // input2
-    port = this.addPort(
-      new DecoratedInputPort(),
-      new draw2d.layout.locator.XYRelPortLocator(27.586206896551722, 70.59697875460611)
-    );
-    port.setConnectionDirection();
-    port.setBackgroundColor("#37B1DE");
-    port.setName("input2");
-    port.setMaxFanOut(20);
+    console.log("INPUT0 Default Value:", port.getValue());
+    port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
+    // Alternatively you register for this event with:
+    port.on("connect", this.onConnect);
+
     // input1
-    port = this.addPort(
-      new DecoratedInputPort(),
-      new draw2d.layout.locator.XYRelPortLocator(27.586206896551722, 27.454380626791263)
-    );
+    port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(27.586, 70.596));
     port.setConnectionDirection();
     port.setBackgroundColor("#37B1DE");
     port.setName("input1");
     port.setMaxFanOut(20);
+    console.log("INPUT1 Default Value:", port.getValue());
+    port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
+    // Alternatively you register for this event with:
+    port.on("connect", this.onConnect);
+
+    // output
+    port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(100.917, 49.025));
+    port.setConnectionDirection();
+    port.setBackgroundColor("#37B1DE");
+    port.setName("output");
+    port.setMaxFanOut(20);
+    port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
+    port.setMaxFanOut(20);
+    // Alternatively you register for this event with:
+    port.on("connect", this.onConnect);
+
     this.persistPorts = false;
   },
 
@@ -68,8 +77,8 @@ let OrClean = draw2d.SetFigure.extend({
     // Label
     shape = this.canvas.paper.text(0, 0, "OR");
     shape.attr({
-      x: 29.49684181608916,
-      y: 25.090644473674978,
+      x: 29.5,
+      y: 25.09,
       "text-anchor": "start",
       text: "OR",
       "font-family": '"Arial"',
@@ -212,13 +221,82 @@ let OrClean = draw2d.SetFigure.extend({
       }, this)
     );
   },
+  /**
+   * @method
+   * Called if the value of any port has been changed
+   *
+   * @param {draw2d.Port} relatedPort
+   * @template
+   */
+  onPortValueChanged: function (relatedPort) {
+    // call the timer manually. In this case we are safe and we
+    // didn'T lost any data...
+    // this.onTimer();
+
+    // console.log("ME:", this);
+    // this.setBackgroundColor(this.colors[this.value]);
+
+    // this.setColor("#111111");
+
+    let i0 = this.getInputPort("input0");
+    let i1 = this.getInputPort("input1");
+    let o1 = this.getOutputPort("output");
+
+    i0.setValue(i0.getValue() === null ? false : i0.getValue());
+    i1.setValue(i1.getValue() === null ? false : i1.getValue());
+
+    const input0 = i0.getValue() === null ? false : i0.getValue();
+    const input1 = i1.getValue() === null ? false : i1.getValue();
+    const output = input0 || input1;
+
+    // if (i0.getValue() === null || i1.getValue() === null || o1.getValue === null) {
+    //   console.log("NULL start values, return");
+    //   return;
+    // }
+    o1.setValue(output);
+    // o1.setValue(i0.getValue() && i1.getValue());
+    // console.log("output, AND VAL:", input0, input1, output, o1.getValue());
+
+    this.value = o1.getValue();
+    // this.setBackgroundColor(this.colors[this.value]);
+    let connections = this.getOutputPort("output").getConnections();
+    connections.each(
+      $.proxy(function (i, conn) {
+        let sourcePort = conn.getSource();
+        // console.log("SOURCE PORT:", sourcePort);
+        let targetPort = conn.getTarget();
+        // console.log("TARGET PORT:", targetPort);
+        targetPort.setValue(this.value);
+        targetPort.setColor(this.colors[this.value]);
+        conn.setColor(this.colors[this.value]);
+      }, this)
+    );
+  },
+  /**
+   * @method
+   * Called if the value of any port has been changed
+   *
+   * @param {draw2d.Connection} connection
+   * @template
+   */
+  onConnect: function (event, connection) {
+    // console.log("CONNECTED!", event, connection);
+  },
+  onClick: function (e) {
+    // console.log("ME:", this);
+    // // for (let obj in this) {
+    // //   console.log(obj);
+    // // }
+    // this.color = "#F1F1F1";
+    // console.log(this.color, this.bgColor);
+  },
 });
 
 /**
  * by 'Draw2D Shape Designer'
  *
  * Custom JS code to tweak the standard behaviour of the generated
- * shape. add your custome code and event handler here.
+ * shape. add your custom code and event handler here.
  *
  *
  */

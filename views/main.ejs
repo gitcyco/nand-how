@@ -73,7 +73,12 @@
                     </a>
                     <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center ">
                         <li class="nav-item">
-                            <a href="#" title="AND" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="BIT SEND" id="insert-bit-send" class="insert-circuit d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only" data-circuit="BIT-SEND">
+                                <img class="svg-icons" src = "/svg/BIT-SEND.svg" alt="BIT-SEND"/>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" title="AND" id="insert-and" class="insert-circuit d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only" data-circuit="AND">
                                 <img class="svg-icons" src = "/svg/AND.svg" alt="AND"/>
                             </a>
                         </li>
@@ -83,35 +88,41 @@
                             </svg>                              
                         </li> -->
                         <li class="nav-item">
-                            <a href="#" title="NAND" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="NAND" id="insert-nand" class="insert-circuit d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only" data-circuit="NAND">
                                 <img class="svg-icons" src = "/svg/NAND.svg" alt="NAND"/>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" title="OR" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="OR" id="insert-or" class="insert-circuit d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only" data-circuit="OR">
                                 <img class="svg-icons" src = "/svg/OR.svg" alt="OR"/>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" title="NOR" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="NOR" id="insert-nor" class="insert-circuit d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only" data-circuit="NOR">
                                 <img class="svg-icons" src = "/svg/NOR.svg" alt="NOR"/>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" title="XOR" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="XOR" id="insert-xor" class="insert-circuit d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only" data-circuit="XOR">
                                 <img class="svg-icons" src = "/svg/XOR.svg" alt="XOR"/>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" title="XNOR" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="XNOR" id="insert-xnor" class="insert-circuit d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only" data-circuit="XNOR">
                                 <img class="svg-icons" src = "/svg/XNOR.svg" alt="XNOR"/>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" title="NOT" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                            <a href="#" title="NOT" id="insert-not" class="insert-circuit d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only" data-circuit="NOT">
                                 <img class="svg-icons" src = "/svg/NOT.svg" alt="NOT"/>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" title="BIT RECEIVE" id="insert-bit-receive" class="insert-circuit d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only" data-circuit="BIT-RECEIVE">
+                                <img class="svg-icons" src = "/svg/BIT-RECEIVE.svg" alt="BIT-RECEIVE"/>
+                            </a>
+                        </li>
+                        
                         <li class="nav-item" style="height: 20px"></li>
                         <li class="nav-item">
                             <a href="#" title="SAVE/LOAD" class="d-block xxxp-3 link-dark text-decoration-none text-light svg-icons" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
@@ -435,9 +446,14 @@
     <script defer src="js/lib/DecoratedInputPort.js"></script>
     <script defer src="js/lib/MarkerFigure.js"></script>
     <script defer src="js/figures/AND.js"></script>
-    <script defer src="js/figures/AND_fancy.js"></script>
+    <!-- <script defer src="js/figures/AND_fancy.js"></script> -->
     <script defer src="js/figures/AND_clean.js"></script>
-    <script defer src="js/figures/TriangleFigure.js"></script>
+    <script defer src="js/figures/NAND_clean.js"></script>
+    <script defer src="js/figures/NOT_clean.js"></script>
+    <script defer src="js/figures/OR_clean.js"></script>
+    <script defer src="js/figures/XNOR_clean.js"></script>
+    <script defer src="js/figures/XOR_clean.js"></script>
+    <!-- <script defer src="js/figures/TriangleFigure.js"></script> -->
     <script defer src="js/figures/BitSend.js"></script>
     <script defer src="js/figures/BitReceive.js"></script>
     <script defer src="js/app/main.js"></script>

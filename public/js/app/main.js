@@ -51,12 +51,67 @@ document.addEventListener("DOMContentLoaded", function () {
   //   const zoomOut = document.getElementById("side-zoom-out");
   //   zoomOut.addEventListener("click", (e) => zoomOutHandler(e, canvas, zoomOut));
 
+  const circuitElements = document.querySelectorAll(".insert-circuit");
+  circuitElements.forEach((element) => {
+    // console.log("INSERT:", element.dataset.circuit);
+    element.addEventListener("click", (e) => insertElement(e, canvas, element.dataset.circuit));
+  });
+
+  //   const insertAndButton = document.getElementById("insert-and");
+  //   insertAndButton.addEventListener("click", (e) => insertElement(e, canvas, "AND"));
+  //
+  //   const insertNandButton = document.getElementById("insert-nand");
+  //   insertNandButton.addEventListener("click", (e) => insertElement(e, canvas, "NAND"));
+
   const saveSketch = document.getElementById("save-sketch-button");
   saveSketch.addEventListener("click", (e) => saveSketchHandler(e, canvas));
 
   const getAllCircuitsButton = document.getElementById("load-sketch-button");
   getAllCircuitsButton.addEventListener("click", (e) => getAllCircuitsHandler(e));
 });
+
+function insertElement(e, canvas, circuitType) {
+  console.log("INSERTING:", circuitType);
+  switch (circuitType) {
+    case "AND":
+      let andClean = new AndClean({ x: 275, y: 250, width: 70, height: 70 });
+      canvas.add(andClean, 150, 250);
+      break;
+    case "NAND":
+      let nandClean = new NandClean({ x: 275, y: 250, width: 70, height: 70 });
+      canvas.add(nandClean, 150, 250);
+      break;
+    case "NOT":
+      let notClean = new NotClean({ x: 275, y: 250, width: 70, height: 70 });
+      canvas.add(notClean, 150, 250);
+    case "OR":
+      let orClean = new OrClean({ x: 275, y: 250, width: 70, height: 70 });
+      canvas.add(orClean, 150, 250);
+      break;
+    case "XNOR":
+      let xnorClean = new XnorClean({ x: 275, y: 250, width: 70, height: 70 });
+      canvas.add(xnorClean, 150, 250);
+      break;
+    case "XOR":
+      let xorClean = new XorClean({ x: 275, y: 250, width: 70, height: 70 });
+      canvas.add(xorClean, 150, 250);
+      break;
+    case "BIT-SEND":
+      // bitSend is a bit initiator, toggle 0/1, false/true, off/on, red/green
+      let bitSend = new BitSend({ x: 125, y: 150, width: 20, height: 20 });
+      canvas.add(bitSend, 50, 50);
+      break;
+    case "BIT-RECEIVE":
+      // bitReceive is a bit receiver, it displays its input bit as red/green, 0/1, false/true, off/on
+      let bitReceive = new BitReceive({ x: 175, y: 200, width: 20, height: 20 });
+      canvas.add(bitReceive, 50, 150);
+      break;
+
+    default:
+      console.log("NOT SUPPORTED");
+      break;
+  }
+}
 
 async function saveSketchHandler(event, canvas) {
   // create a PNG image of the canvas

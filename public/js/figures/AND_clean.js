@@ -9,8 +9,9 @@ let AndClean = draw2d.SetFigure.extend({
 
     this._super($.extend({ stroke: 0, bgColor: null, width: 50, height: 40 }, attr), setter, getter);
     let port;
-    // Port
-    port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 22.5));
+
+    // Port0
+    port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.616, 22.5));
     // port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 22.5));
     port.setConnectionDirection();
     // port.setBackgroundColor("#37B1DE");
@@ -22,8 +23,8 @@ let AndClean = draw2d.SetFigure.extend({
     // Alternatively you register for this event with:
     port.on("connect", this.onConnect);
 
-    // Port
-    port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 77.5));
+    // Port1
+    port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.616, 77.5));
     port.setConnectionDirection();
     // port.setBackgroundColor("#37B1DE");
     port.setBackgroundColor(this.colors[false]);
@@ -31,15 +32,20 @@ let AndClean = draw2d.SetFigure.extend({
     console.log("INPUT1 Default Value:", port.getValue());
     port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
     port.setMaxFanOut(20);
+    // Alternatively you register for this event with:
+    port.on("connect", this.onConnect);
 
-    // Port
-    port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99.35551887266377, 50));
+    // Port Out
+    port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99.355, 50));
     port.setConnectionDirection();
     // port.setBackgroundColor("#37B1DE");
     port.setBackgroundColor(this.colors[false]);
     port.setName("output");
     port.setValue(port.getValue() === null ? port.setValue(false) : port.getValue());
     port.setMaxFanOut(20);
+    // Alternatively you register for this event with:
+    port.on("connect", this.onConnect);
+
     this.persistPorts = false;
   },
 
@@ -238,7 +244,7 @@ let AndClean = draw2d.SetFigure.extend({
     // didn'T lost any data...
     // this.onTimer();
 
-    console.log("ME:", this);
+    // console.log("ME:", this);
     // this.setBackgroundColor(this.colors[this.value]);
 
     // this.setColor("#111111");
@@ -260,7 +266,7 @@ let AndClean = draw2d.SetFigure.extend({
     // }
     o1.setValue(output);
     // o1.setValue(i0.getValue() && i1.getValue());
-    console.log("output, AND VAL:", input0, input1, output, o1.getValue());
+    // console.log("output, AND VAL:", input0, input1, output, o1.getValue());
 
     this.value = o1.getValue();
     // this.setBackgroundColor(this.colors[this.value]);
@@ -268,9 +274,9 @@ let AndClean = draw2d.SetFigure.extend({
     connections.each(
       $.proxy(function (i, conn) {
         let sourcePort = conn.getSource();
-        console.log("SOURCE PORT:", sourcePort);
+        // console.log("SOURCE PORT:", sourcePort);
         let targetPort = conn.getTarget();
-        console.log("TARGET PORT:", targetPort);
+        // console.log("TARGET PORT:", targetPort);
         targetPort.setValue(this.value);
         targetPort.setColor(this.colors[this.value]);
         conn.setColor(this.colors[this.value]);
@@ -285,7 +291,7 @@ let AndClean = draw2d.SetFigure.extend({
    * @template
    */
   onConnect: function (event, connection) {
-    console.log("CONNECTED!", event, connection);
+    // console.log("CONNECTED!", event, connection);
   },
   onClick: function (e) {
     // console.log("ME:", this);
