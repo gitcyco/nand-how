@@ -70,6 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
   getAllCircuitsButton.addEventListener("click", (e) => getAllCircuitsHandler(e));
 });
 
+// This function creates and inserts a new logic gate or other figure based
+// on the type of the button that was clicked.
 function insertElement(e, canvas, circuitType) {
   console.log("INSERTING:", circuitType);
   switch (circuitType) {
