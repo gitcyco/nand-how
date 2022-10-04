@@ -16,6 +16,7 @@ var DecoratedInputPort = draw2d.InputPort.extend({
     this.on(
       "connect",
       function (emitter, event) {
+        console.log("DecoratedInputPort value:", this.getValue());
         this.decoration.setVisible(false);
       }.bind(this)
     );

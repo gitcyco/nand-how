@@ -16,8 +16,10 @@ module.exports = {
   getCircuit: async (req, res) => {
     console.log("getCircuit");
     try {
+      console.log("getCircuit id:", req.params.id);
       // const circuitJSON = await Circuit.find({ title: "Canvas Save", user: req.user.id });
-      const circuitJSON = await Circuit.find({ title: "Canvas Save", user: req.user.id });
+      const circuitJSON = await Circuit.findById({ _id: req.params.id });
+
       res.json(circuitJSON);
     } catch (error) {
       console.log(error);

@@ -6,7 +6,8 @@ const circuitsController = require("../controllers/circuits");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Circuit Routes - simplified for now
-router.get("/", ensureAuth, circuitsController.getCircuit);
+// router.get("/", ensureAuth, circuitsController.getCircuit);
+router.get("/load/:id", ensureAuth, circuitsController.getCircuit);
 
 router.get("/listCircuits", ensureAuth, circuitsController.listCircuits);
 router.put("/createCircuit", ensureAuth, circuitsController.createCircuit);

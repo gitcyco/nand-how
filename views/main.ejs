@@ -344,8 +344,8 @@
 
                             <!-- Email input -->
                             <div class="form-outline mb-4">
-                                <input type="email" id="saveName" class="form-control" name="saveName" />
-                                <label class="form-label" for="saveName">Save Name</label>
+                                <input type="email" id="save-name" class="form-control" name="save-name" />
+                                <label class="form-label" for="save-name">Save Name</label>
                             </div>
 
                             <!-- Submit button -->
@@ -361,67 +361,41 @@
                         </form>
                     </div>
                     <div class="tab-pane fade" id="pills-load" role="tabpanel" aria-labelledby="tab-load">
-                        <form >
+                        <!-- <form > -->
                             <div class="text-center mb-3">
                                 <p>Load a sketch</p>
                             </div>
 
-                            <ul id="saved-sketches-list">
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                                <li>
-                                    <h1>MORE CONTENT</h1>
-                                </li>
-                            </ul>
+                            <!-- This contains the actual load/delete list of saves -->
+                            <!-- Carousel for loading start -->
 
-                            <!-- Username input -->
-                            <div class="form-outline mb-4">
-                                <input type="text" id="load1" class="form-control" name="userName"/>
-                                <label class="form-label" for="load1">Username</label>
+                            <div id="loadCarouselControls" class="carousel slide text-center carousel-dark" data-mdb-ride="carousel" data-mdb-interval="false">
+                                <div id="loadCarouselInnerItems" class="carousel-inner">
+                                  <!-- The items to load will be appended inside here -->
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-mdb-target="#loadCarouselControls" data-mdb-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-mdb-target="#loadCarouselControls" data-mdb-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Next</span>
+                                </button>
+                                <button id="delete-sketch-button" class="btn xxxbtn-primary mb-2"><i class="fa-solid fa-trash-can"></i></button>
+                                
                             </div>
 
-                            <!-- Email input -->
-                            <div class="form-outline mb-4">
-                                <input type="email" id="load2" class="form-control" name="email" />
-                                <label class="form-label" for="load2">Email</label>
+                            <!-- Submit button -->
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                              <button type="button" id="load-sketch-button" class="btn btn-primary" data-mdb-dismiss="modal">Load</button>
                             </div>
+                            <!-- <button id="load-sketch-button" class="btn btn-primary">Load</button> -->
+                            <!-- <button id="delete-sketch-button" class="btn ">Delete</button> -->
+
+
+                            <!-- Carousel for loading end -->
+
 
                             <!-- Submit button -->
                             <!-- <div class="modal-footer">
@@ -431,17 +405,17 @@
                             
                             <!-- Submit button -->
                             <!-- <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button> -->
-                        </form>
+                        <!-- </form> -->
                     </div>
                 </div>
                 <!-- Pills content -->
 
                 </div>
                 <!-- Close/Save buttons -->
-                <div class="modal-footer">
+                <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
                     <button type="button" id="load-sketch-button" class="btn btn-primary" data-mdb-dismiss="modal">Load Sketch</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

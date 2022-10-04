@@ -38,6 +38,17 @@ mainApp.Toolbar = Class.extend({
         this.view.getCommandStack().redo();
       }, this)
     );
+
+    // Inject the CLEAR Button and the callback
+    //
+    this.clearButton = $("<li><a>CLEAR</a></li>");
+    this.html.append(this.clearButton);
+    this.clearButton.css("color", "#999");
+    this.clearButton.button().click(
+      $.proxy(function () {
+        this.view.clear();
+      }, this)
+    );
     //   .button("option", "disabled", true);
 
     this.delimiter = $("<span class='toolbar_delimiter'>&nbsp;</span>");

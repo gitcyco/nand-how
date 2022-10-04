@@ -65,8 +65,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const saveSketch = document.getElementById("save-sketch-button");
   saveSketch.addEventListener("click", (e) => saveSketchHandler(e, canvas));
 
+  const loadSketchTab = document.getElementById("tab-load");
+  loadSketchTab.addEventListener("click", (e) => getAllCircuitsHandler(e, canvas));
+
   const getAllCircuitsButton = document.getElementById("load-sketch-button");
-  getAllCircuitsButton.addEventListener("click", (e) => getAllCircuitsHandler(e));
+  getAllCircuitsButton.addEventListener("click", (e) => getAllCircuitsHandler(e, canvas));
 });
 
 // This function creates and inserts a new logic gate or other figure based
@@ -75,37 +78,37 @@ function insertElement(e, canvas, circuitType) {
   console.log("INSERTING:", circuitType);
   switch (circuitType) {
     case "AND":
-      let andClean = new AndClean({ x: 275, y: 250, width: 70, height: 70 });
-      canvas.add(andClean, 150, 250);
+      let andClean = new AndClean({ x: 275, y: 200, width: 70, height: 70 });
+      canvas.add(andClean, 150, 200);
       break;
     case "NAND":
-      let nandClean = new NandClean({ x: 275, y: 250, width: 70, height: 70 });
-      canvas.add(nandClean, 150, 250);
+      let nandClean = new NandClean({ x: 275, y: 220, width: 70, height: 70 });
+      canvas.add(nandClean, 150, 220);
       break;
     case "NOT":
-      let notClean = new NotClean({ x: 275, y: 250, width: 70, height: 70 });
-      canvas.add(notClean, 150, 250);
+      let notClean = new NotClean({ x: 275, y: 230, width: 70, height: 70 });
+      canvas.add(notClean, 150, 230);
       break;
     case "OR":
-      let orClean = new OrClean({ x: 275, y: 250, width: 70, height: 70 });
-      canvas.add(orClean, 150, 250);
+      let orClean = new OrClean({ x: 275, y: 240, width: 70, height: 70 });
+      canvas.add(orClean, 150, 240);
       break;
     case "XNOR":
-      let xnorClean = new XnorClean({ x: 275, y: 250, width: 70, height: 70 });
-      canvas.add(xnorClean, 150, 250);
+      let xnorClean = new XnorClean({ x: 275, y: 260, width: 70, height: 70 });
+      canvas.add(xnorClean, 150, 260);
       break;
     case "XOR":
-      let xorClean = new XorClean({ x: 275, y: 250, width: 70, height: 70 });
-      canvas.add(xorClean, 150, 250);
+      let xorClean = new XorClean({ x: 275, y: 280, width: 70, height: 70 });
+      canvas.add(xorClean, 150, 280);
       break;
     case "BIT-SEND":
       // bitSend is a bit initiator, toggle 0/1, false/true, off/on, red/green
-      let bitSend = new BitSend({ x: 125, y: 150, width: 20, height: 20 });
+      let bitSend = new BitSend({ x: 125, y: 150, width: 30, height: 30 });
       canvas.add(bitSend, 50, 50);
       break;
     case "BIT-RECEIVE":
       // bitReceive is a bit receiver, it displays its input bit as red/green, 0/1, false/true, off/on
-      let bitReceive = new BitReceive({ x: 175, y: 200, width: 20, height: 20 });
+      let bitReceive = new BitReceive({ x: 175, y: 200, width: 30, height: 30 });
       canvas.add(bitReceive, 50, 150);
       break;
 
@@ -120,12 +123,13 @@ async function saveSketchHandler(event, canvas) {
   const writer = new draw2d.io.png.Writer();
   let pngImage;
 
+  // this dumps the canvas into a png base64 encode
   writer.marshal(canvas, function (png) {
-    console.log("PNG:", png);
+    // console.log("PNG:", png);
     pngImage = png;
   });
 
-  const saveName = document.getElementById("saveName").value;
+  const saveName = document.getElementById("save-name").value;
 
   // Grab a JSON representation of the canvas
   const canvasJSON = getCanvasJSON(canvas);
@@ -170,11 +174,11 @@ function getCanvasImage(event, canvas, element) {
   // console.log(canvasUrl);
 }
 
-function addShape(e, canvas) {
-  // Add a simple triangle
-  let triangle = new TriangleFigure({ x: 100, y: 100, width: 100, height: 140 });
-  canvas.add(triangle);
-}
+// function addShape(e, canvas) {
+//   // Add a simple triangle
+//   let triangle = new TriangleFigure({ x: 100, y: 100, width: 100, height: 140 });
+//   canvas.add(triangle);
+// }
 
 function exportJSON(e, canvas) {
   console.log("Clicked Export JSON", canvas);
@@ -185,14 +189,14 @@ function exportJSON(e, canvas) {
 }
 
 // Fetches a JSON canvas and puts it onto the current canvas
-async function importJSON(e, canvas) {
+async function importJSON(e, canvas, sketchId) {
   try {
-    const canvasJson = await (await fetch("/circuits")).json();
-    console.log("IMPORTED:", JSON.parse(canvasJson[0].canvas));
+    const canvasJson = await (await fetch(`/circuits/load/${sketchId}`)).json();
+    console.log("IMPORTED:", JSON.parse(canvasJson.canvas));
 
     // Define reader and import the json into the canvas
     let reader = new draw2d.io.json.Reader();
-    reader.unmarshal(canvas, JSON.parse(canvasJson[0].canvas));
+    reader.unmarshal(canvas, JSON.parse(canvasJson.canvas));
 
     // reader.unmarshal(canvas, bitJSON);
   } catch (error) {
@@ -237,11 +241,51 @@ async function putCanvasJSON(canvasJSON, sketchTitle, png) {
   }
 }
 
-async function getAllCircuitsHandler() {
+async function getAllCircuitsHandler(event, canvas) {
   try {
+    const canvas = app.view;
+    const loadCarouselInnerItems = document.getElementById("loadCarouselInnerItems");
+    const loadSketchButton = document.getElementById("load-sketch-button");
+    const deleteSketchButton = document.getElementById("delete-sketch-button");
+
+    loadSketchButton.addEventListener("click", (e) => {
+      console.log("LOAD:", e.target.dataset.sketchId);
+      importJSON(e, canvas, e.target.dataset.sketchId);
+    });
+
     const response = await fetch("circuits/listCircuits");
     const data = await response.json();
     console.log("DATA:", data);
+    if (data.length === 0) return;
+
+    loadSketchButton.dataset.sketchId = data[0]._id;
+    deleteSketchButton.dataset.sketchId = data[0]._id;
+
+    loadCarouselInnerItems.innerHTML = data
+      .map((item, i) => {
+        return `<div data-circuit-id="${item._id}" class="carousel-item ${i == 0 ? "active" : ""}">
+                  <img class="shadow-1-strong mb-4"
+                    src="${item.image}" alt="avatar"
+                    style="width: 150px;" />
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                      <p class="text-muted">
+                        ${item.title}
+                      </p>
+                    </div>
+                  </div>
+                </div>`;
+      })
+      .join("");
+
+    // Every time the carousel rotates to the next item, update the load/delete controls
+    // to have the current items database id.
+    const myCarousel = document.getElementById("loadCarouselControls");
+    myCarousel.addEventListener("slide.mdb.carousel", (e) => {
+      loadSketchButton.dataset.sketchId = e.relatedTarget.dataset.circuitId;
+      deleteSketchButton.dataset.sketchId = e.relatedTarget.dataset.circuitId;
+      console.log("SLIDING:", e.relatedTarget.dataset.circuitId);
+    });
   } catch (error) {
     console.log(error);
   }
