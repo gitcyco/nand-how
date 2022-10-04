@@ -11,7 +11,15 @@ let NandClean = draw2d.SetFigure.extend({
     let port;
     // Port0
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(-8.33, 12.5));
-    port.setConnectionDirection();
+
+    // setConnectionDirection(): (port connection orientation)
+    // up -> 0
+    // right -> 1
+    // down -> 2
+    // left -> 3
+    // calculated -> null
+    port.setConnectionDirection(3);
+
     port.setBackgroundColor("#37B1DE");
     port.setName("input0");
     port.setMaxFanOut(20);
@@ -22,7 +30,7 @@ let NandClean = draw2d.SetFigure.extend({
 
     // Port1
     port = this.addPort(
-      new DecoratedInputPort(),
+      new DecoratedInputPort(3),
       new draw2d.layout.locator.XYRelPortLocator(-8.333333333333334, 87.50000000000026)
     );
     port.setConnectionDirection();
@@ -36,7 +44,7 @@ let NandClean = draw2d.SetFigure.extend({
 
     // Port Out
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(108.33333333333334, 50.00000000000014));
-    port.setConnectionDirection();
+    port.setConnectionDirection(1);
     port.setBackgroundColor("#37B1DE");
     port.setName("output");
     port.setMaxFanOut(20);

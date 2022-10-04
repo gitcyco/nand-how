@@ -13,7 +13,7 @@ let BitReceive = draw2d.shape.basic.Rectangle.extend({
     // Port
     // port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 50));
     port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(0.616466432000038, 50));
-    port.setConnectionDirection();
+    port.setConnectionDirection(3);
     port.setBackgroundColor("#37B1DE");
     this.setBackgroundColor(this.colors[this.value]);
     this.setColor(this.colors[this.value]);

@@ -14,33 +14,31 @@ let NorClean = draw2d.SetFigure.extend({
     this.colors[true] = "#00f000";
     this.colors[false] = "#f00000";
 
-    this._super(
-      $.extend({ stroke: 0, bgColor: null, width: 61.58451433989285, height: 50.993683632178346 }, attr),
-      setter,
-      getter
-    );
+    this._super($.extend({ stroke: 0, bgColor: null, width: 61.5, height: 51 }, attr), setter, getter);
     let port;
     // input2
-    port = this.addPort(
-      new DecoratedInputPort(),
-      new draw2d.layout.locator.XYRelPortLocator(13.93940413740021, 70.59697875460611)
-    );
-    port.setConnectionDirection();
+    port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(13.939, 70.596));
+
+    // setConnectionDirection(): (port connection orientation)
+    // up -> 0
+    // right -> 1
+    // down -> 2
+    // left -> 3
+    // calculated -> null
+    port.setConnectionDirection(3);
+
     port.setBackgroundColor("#37B1DE");
     port.setName("input2");
     port.setMaxFanOut(20);
     // input1
-    port = this.addPort(
-      new DecoratedInputPort(),
-      new draw2d.layout.locator.XYRelPortLocator(13.93940413740021, 27.454380626791263)
-    );
-    port.setConnectionDirection();
+    port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(13.939, 27.454));
+    port.setConnectionDirection(3);
     port.setBackgroundColor("#37B1DE");
     port.setName("input1");
     port.setMaxFanOut(20);
     // output
-    port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(100.86436350374439, 49.02567969069869));
-    port.setConnectionDirection();
+    port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(100.864, 49.025));
+    port.setConnectionDirection(1);
     port.setBackgroundColor("#37B1DE");
     port.setName("output");
     port.setMaxFanOut(20);

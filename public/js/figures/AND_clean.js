@@ -13,7 +13,15 @@ let AndClean = draw2d.SetFigure.extend({
     // Port0
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.616, 22.5));
     // port = this.createPort("input", new draw2d.layout.locator.XYRelPortLocator(0.6164664320000384, 22.5));
-    port.setConnectionDirection();
+
+    // setConnectionDirection(): (port connection orientation)
+    // up -> 0
+    // right -> 1
+    // down -> 2
+    // left -> 3
+    // calculated -> null
+    port.setConnectionDirection(3);
+
     // port.setBackgroundColor("#37B1DE");
     port.setBackgroundColor(this.colors[false]);
     port.setName("input0");
@@ -25,7 +33,7 @@ let AndClean = draw2d.SetFigure.extend({
 
     // Port1
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(0.616, 77.5));
-    port.setConnectionDirection();
+    port.setConnectionDirection(3);
     // port.setBackgroundColor("#37B1DE");
     port.setBackgroundColor(this.colors[false]);
     port.setName("input1");
@@ -37,7 +45,7 @@ let AndClean = draw2d.SetFigure.extend({
 
     // Port Out
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(99.355, 50));
-    port.setConnectionDirection();
+    port.setConnectionDirection(1);
     // port.setBackgroundColor("#37B1DE");
     port.setBackgroundColor(this.colors[false]);
     port.setName("output");

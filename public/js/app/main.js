@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let bitReceive = new BitReceive({ x: 175, y: 200, width: 20, height: 20 });
   canvas.add(bitReceive, 50, 150);
 
-  let andSimple = new AndSimple({ x: 175, y: 200, width: 70, height: 70 });
-  canvas.add(andSimple, 150, 250);
+  // let andSimple = new AndSimple({ x: 175, y: 200, width: 70, height: 70 });
+  // canvas.add(andSimple, 150, 250);
 
   let andClean = new AndClean({ x: 275, y: 250, width: 70, height: 70 });
   canvas.add(andClean, 150, 250);
@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const circuitElements = document.querySelectorAll(".insert-circuit");
   circuitElements.forEach((element) => {
-    // console.log("INSERT:", element.dataset.circuit);
     element.addEventListener("click", (e) => insertElement(e, canvas, element.dataset.circuit));
   });
 
@@ -86,6 +85,7 @@ function insertElement(e, canvas, circuitType) {
     case "NOT":
       let notClean = new NotClean({ x: 275, y: 250, width: 70, height: 70 });
       canvas.add(notClean, 150, 250);
+      break;
     case "OR":
       let orClean = new OrClean({ x: 275, y: 250, width: 70, height: 70 });
       canvas.add(orClean, 150, 250);

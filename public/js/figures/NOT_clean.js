@@ -13,7 +13,15 @@ let NotClean = draw2d.SetFigure.extend({
     // input0
     // port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(-17.215, 51.066));
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(-5.215, 51.066));
-    port.setConnectionDirection();
+
+    // setConnectionDirection(): (port connection orientation)
+    // up -> 0
+    // right -> 1
+    // down -> 2
+    // left -> 3
+    // calculated -> null
+    port.setConnectionDirection(3);
+
     port.setBackgroundColor("#37B1DE");
     port.setName("input0");
     port.setMaxFanOut(20);
@@ -24,7 +32,7 @@ let NotClean = draw2d.SetFigure.extend({
 
     // output
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(90, 51.066));
-    port.setConnectionDirection();
+    port.setConnectionDirection(1);
     port.setBackgroundColor("#37B1DE");
     port.setName("output");
     port.setMaxFanOut(20);

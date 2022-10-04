@@ -1,8 +1,3 @@
-// To do:
-//
-// NEED TO FIX PORT ORIENTATION
-// Currently the port connection direction is rotated -45 from where it should be
-//
 let XnorClean = draw2d.SetFigure.extend({
   NAME: "XnorClean",
 
@@ -17,7 +12,15 @@ let XnorClean = draw2d.SetFigure.extend({
 
     // input0
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(11.992, 27.4543));
-    port.setConnectionDirection();
+
+    // setConnectionDirection(): (port connection orientation)
+    // up -> 0
+    // right -> 1
+    // down -> 2
+    // left -> 3
+    // calculated -> null
+    port.setConnectionDirection(3);
+
     port.setBackgroundColor("#37B1DE");
     port.setName("input0");
     port.setMaxFanOut(20);
@@ -28,7 +31,7 @@ let XnorClean = draw2d.SetFigure.extend({
 
     // input1
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(11.992, 70.596));
-    port.setConnectionDirection();
+    port.setConnectionDirection(3);
     port.setBackgroundColor("#37B1DE");
     port.setName("input1");
     port.setMaxFanOut(20);
@@ -39,7 +42,7 @@ let XnorClean = draw2d.SetFigure.extend({
 
     // output
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(108.381, 49.025));
-    port.setConnectionDirection();
+    port.setConnectionDirection(1);
     port.setBackgroundColor("#37B1DE");
     port.setName("output");
     port.setMaxFanOut(20);

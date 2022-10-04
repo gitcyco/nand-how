@@ -17,7 +17,15 @@ let XorClean = draw2d.SetFigure.extend({
 
     // input0
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(13.939, 27.4543));
-    port.setConnectionDirection();
+
+    // setConnectionDirection(): (port connection orientation)
+    // up -> 0
+    // right -> 1
+    // down -> 2
+    // left -> 3
+    // calculated -> null
+    port.setConnectionDirection(3);
+
     port.setBackgroundColor("#37B1DE");
     port.setName("input0");
     port.setMaxFanOut(20);
@@ -28,7 +36,7 @@ let XorClean = draw2d.SetFigure.extend({
 
     // input1
     port = this.addPort(new DecoratedInputPort(), new draw2d.layout.locator.XYRelPortLocator(13.939, 70.596));
-    port.setConnectionDirection();
+    port.setConnectionDirection(3);
     port.setBackgroundColor("#37B1DE");
     port.setName("input1");
     port.setMaxFanOut(20);
@@ -39,7 +47,7 @@ let XorClean = draw2d.SetFigure.extend({
 
     // output
     port = this.createPort("output", new draw2d.layout.locator.XYRelPortLocator(100.864, 49.025));
-    port.setConnectionDirection();
+    port.setConnectionDirection(1);
     port.setBackgroundColor("#37B1DE");
     port.setName("output");
     port.setMaxFanOut(20);
