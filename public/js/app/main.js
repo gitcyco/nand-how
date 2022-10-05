@@ -39,9 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
   //   const importLink = document.getElementById("import-json");
   //   importLink.addEventListener("click", (e) => importJSON(e, canvas));
   //
-  //   const addTriangle = document.getElementById("add-triangle");
-  //   addTriangle.addEventListener("click", (e) => addShape(e, canvas));
-  //
   //   const downloadCanvas = document.getElementById("download-canvas");
   //   downloadCanvas.addEventListener("click", (e) => getCanvasImage(e, canvas, downloadCanvas));
   //
@@ -133,7 +130,7 @@ async function saveSketchHandler(event, canvas) {
   putCanvasJSON(canvasJSON, saveName, pngImage);
 
   // Clear the form before it closes
-  document.getElementById("saveName").value = "";
+  document.getElementById("save-name").value = "";
 }
 
 function zoomInHandler(event, canvas, zoomIn) {
@@ -169,12 +166,6 @@ function getCanvasImage(event, canvas, element) {
   // let canvasUrl = canvas.toDataURL("image/jpeg", 0.5);
   // console.log(canvasUrl);
 }
-
-// function addShape(e, canvas) {
-//   // Add a simple triangle
-//   let triangle = new TriangleFigure({ x: 100, y: 100, width: 100, height: 140 });
-//   canvas.add(triangle);
-// }
 
 function exportJSON(e, canvas) {
   console.log("Clicked Export JSON", canvas);
@@ -252,6 +243,12 @@ async function getAllCircuitsHandler(event, canvas) {
       importJSON(e, canvas, e.target.dataset.sketchId);
     });
 
+    deleteSketchButton.addEventListener("click", (e) => {
+      // Need to determine if the actual item clicked is the i node or the button node
+      if (e.target.nodeName === "I") deleteSketch(e.target.parentNode.dataset.sketchId);
+      else deleteSketch(e.target.dataset.sketchId);
+    });
+
     const response = await fetch("circuits/listCircuits");
     const data = await response.json();
     console.log("DATA:", data);
@@ -283,9 +280,29 @@ async function getAllCircuitsHandler(event, canvas) {
     myCarousel.addEventListener("slide.mdb.carousel", (e) => {
       loadSketchButton.dataset.sketchId = e.relatedTarget.dataset.circuitId;
       deleteSketchButton.dataset.sketchId = e.relatedTarget.dataset.circuitId;
-      console.log("SLIDING:", e.relatedTarget.dataset.circuitId);
+      // console.log("SLIDING:", e.relatedTarget.dataset.circuitId);
     });
   } catch (error) {
     console.log(error);
+  }
+}
+
+async function deleteSketch(id) {
+  console.log("DELETING:", id);
+
+  try {
+    const response = await fetch("circuits/deleteCircuit", {
+      method: "delete",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({
+        circuitId: id,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+    const loadSketchTab = document.getElementById("tab-load");
+    loadSketchTab.click();
+  } catch (err) {
+    console.log(err);
   }
 }

@@ -59,18 +59,20 @@ module.exports = {
   },
 
   deleteCircuit: async (req, res) => {
-    console.log("deleteCircuit");
+    console.log("deleteCircuit", req.body.circuitId);
+    // res.json("Deleted It");
+    // return;
     try {
-      // Find post by id
-      let post = await Circuit.findById({ _id: req.params.id });
+      // Find Circuit by id
+      let circuit = await Circuit.findById({ _id: req.body.circuitId });
       // Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryId);
-      // Delete post from db
-      await Post.remove({ _id: req.params.id });
-      console.log("Deleted Post");
-      res.redirect("/profile");
+      await cloudinary.uploader.destroy(circuit.cloudinaryId);
+      // Delete Circuit from db
+      await Circuit.remove({ _id: req.body.circuitId });
+      console.log("Deleted Circuit");
+      res.json("Deleted It");
     } catch (error) {
-      res.redirect("/profile");
+      console.log(error);
     }
   },
 };

@@ -11,9 +11,6 @@ router.get("/load/:id", ensureAuth, circuitsController.getCircuit);
 
 router.get("/listCircuits", ensureAuth, circuitsController.listCircuits);
 router.put("/createCircuit", ensureAuth, circuitsController.createCircuit);
-
-// router.put("/likePost/:id", postsController.likePost);
-//
-// router.delete("/deletePost/:id", postsController.deletePost);
+router.delete("/deleteCircuit", ensureAuth, circuitsController.deleteCircuit);
 
 module.exports = router;
