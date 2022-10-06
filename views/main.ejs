@@ -350,7 +350,7 @@
 
                             <!-- Submit button -->
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                                <button type="button" id="close-sketch-save-modal" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
                                 <button type="button" id="save-sketch-button" class="btn btn-primary" data-mdb-dismiss="modal">Save</button>
                             </div>
 
@@ -382,12 +382,14 @@
                                   <span class="visually-hidden">Next</span>
                                 </button>
                                 <button id="delete-sketch-button" class="btn xxxbtn-primary mb-2"><i class="fa-solid fa-trash-can"></i></button>
+                                <button id="delete-sketch-confirm" class="btn btn-danger mb-2 d-none ">CONFIRM</button>
+                                <button id="delete-sketch-cancel" class="btn mb-2 d-none ">CANCEL</button>
                                 
                             </div>
 
                             <!-- Submit button -->
                             <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                              <button type="button" id="close-sketch-load-modal" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
                               <button type="button" id="load-sketch-button" class="btn btn-primary" data-mdb-dismiss="modal">Load</button>
                             </div>
                             <!-- <button id="load-sketch-button" class="btn btn-primary">Load</button> -->

@@ -61,6 +61,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const getAllCircuitsButton = document.getElementById("load-sketch-button");
   getAllCircuitsButton.addEventListener("click", (e) => getAllCircuitsHandler(e, canvas));
+
+  // When the save/load modal is closed or dismissed, make sure the delete/confirm/cancel buttons reset display settings
+  const saveLoadModal = document.getElementById("saveLoadModal");
+  saveLoadModal.addEventListener("hide.mdb.modal", (e) => showDeleteButton());
 });
 
 // This function creates and inserts a new logic gate or other figure based
@@ -168,7 +172,7 @@ function getCanvasImage(event, canvas, element) {
 }
 
 function exportJSON(e, canvas) {
-  console.log("Clicked Export JSON", canvas);
+  // console.log("Clicked Export JSON", canvas);
   // displayJSON(canvas);
   const canvasJSON = getCanvasJSON(canvas);
   putCanvasJSON(canvasJSON);
@@ -230,23 +234,36 @@ async function putCanvasJSON(canvasJSON, sketchTitle, png) {
   }
 }
 
-// This populates the Load dialogue and configures the buttons with the proper ID's
+// This populates the Load dialogue and configures the buttons with the proper dataset ID's
 async function getAllCircuitsHandler(event, canvas) {
   try {
     const canvas = app.view;
     const loadCarouselInnerItems = document.getElementById("loadCarouselInnerItems");
     const loadSketchButton = document.getElementById("load-sketch-button");
     const deleteSketchButton = document.getElementById("delete-sketch-button");
+    const confirmDeleteSketchButton = document.getElementById("delete-sketch-confirm");
+    const cancelDeleteSketchButton = document.getElementById("delete-sketch-cancel");
 
     loadSketchButton.addEventListener("click", (e) => {
       console.log("LOAD:", e.target.dataset.sketchId);
       importJSON(e, canvas, e.target.dataset.sketchId);
     });
 
+    cancelDeleteSketchButton.addEventListener("click", (e) => {
+      showDeleteButton();
+    });
+
     deleteSketchButton.addEventListener("click", (e) => {
+      showConfirmButton();
       // Need to determine if the actual item clicked is the i node or the button node
-      if (e.target.nodeName === "I") deleteSketch(e.target.parentNode.dataset.sketchId);
-      else deleteSketch(e.target.dataset.sketchId);
+      // if (e.target.nodeName === "I") deleteSketch(e.target.parentNode.dataset.sketchId);
+      // else deleteSketch(e.target.dataset.sketchId);
+    });
+
+    confirmDeleteSketchButton.addEventListener("click", (e) => {
+      showDeleteButton();
+      console.log("WILL DELETE:", e.target.dataset.sketchId);
+      deleteSketch(e.target.dataset.sketchId);
     });
 
     const response = await fetch("circuits/listCircuits");
@@ -256,6 +273,7 @@ async function getAllCircuitsHandler(event, canvas) {
 
     loadSketchButton.dataset.sketchId = data[0]._id;
     deleteSketchButton.dataset.sketchId = data[0]._id;
+    confirmDeleteSketchButton.dataset.sketchId = data[0]._id;
 
     loadCarouselInnerItems.innerHTML = data
       .map((item, i) => {
@@ -280,6 +298,7 @@ async function getAllCircuitsHandler(event, canvas) {
     myCarousel.addEventListener("slide.mdb.carousel", (e) => {
       loadSketchButton.dataset.sketchId = e.relatedTarget.dataset.circuitId;
       deleteSketchButton.dataset.sketchId = e.relatedTarget.dataset.circuitId;
+      confirmDeleteSketchButton.dataset.sketchId = e.relatedTarget.dataset.circuitId;
       // console.log("SLIDING:", e.relatedTarget.dataset.circuitId);
     });
   } catch (error) {
@@ -305,4 +324,24 @@ async function deleteSketch(id) {
   } catch (err) {
     console.log(err);
   }
+}
+
+function showDeleteButton() {
+  const deleteSketchButton = document.getElementById("delete-sketch-button");
+  const confirmDeleteSketchButton = document.getElementById("delete-sketch-confirm");
+  const cancelDeleteSketchButton = document.getElementById("delete-sketch-cancel");
+
+  deleteSketchButton.classList.remove("d-none");
+  confirmDeleteSketchButton.classList.add("d-none");
+  cancelDeleteSketchButton.classList.add("d-none");
+}
+
+function showConfirmButton() {
+  const deleteSketchButton = document.getElementById("delete-sketch-button");
+  const confirmDeleteSketchButton = document.getElementById("delete-sketch-confirm");
+  const cancelDeleteSketchButton = document.getElementById("delete-sketch-cancel");
+
+  deleteSketchButton.classList.add("d-none");
+  confirmDeleteSketchButton.classList.remove("d-none");
+  cancelDeleteSketchButton.classList.remove("d-none");
 }
