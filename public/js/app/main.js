@@ -327,21 +327,13 @@ async function deleteSketch(id) {
 }
 
 function showDeleteButton() {
-  const deleteSketchButton = document.getElementById("delete-sketch-button");
-  const confirmDeleteSketchButton = document.getElementById("delete-sketch-confirm");
-  const cancelDeleteSketchButton = document.getElementById("delete-sketch-cancel");
-
-  deleteSketchButton.classList.remove("d-none");
-  confirmDeleteSketchButton.classList.add("d-none");
-  cancelDeleteSketchButton.classList.add("d-none");
+  document.getElementById("delete-sketch-button").classList.remove("d-none");
+  document.getElementById("delete-sketch-confirm").classList.add("d-none");
+  document.getElementById("delete-sketch-cancel").classList.add("d-none");
 }
 
 function showConfirmButton() {
-  const deleteSketchButton = document.getElementById("delete-sketch-button");
-  const confirmDeleteSketchButton = document.getElementById("delete-sketch-confirm");
-  const cancelDeleteSketchButton = document.getElementById("delete-sketch-cancel");
-
-  deleteSketchButton.classList.add("d-none");
-  confirmDeleteSketchButton.classList.remove("d-none");
-  cancelDeleteSketchButton.classList.remove("d-none");
+  document.getElementById("delete-sketch-button").classList.add("d-none");
+  document.getElementById("delete-sketch-confirm").classList.remove("d-none");
+  document.getElementById("delete-sketch-cancel").classList.remove("d-none");
 }
