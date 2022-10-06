@@ -60,8 +60,6 @@ module.exports = {
 
   deleteCircuit: async (req, res) => {
     console.log("deleteCircuit", req.body.circuitId);
-    // res.json("Deleted It");
-    // return;
     try {
       // Find Circuit by id
       let circuit = await Circuit.findById({ _id: req.body.circuitId });

@@ -37,6 +37,13 @@ exports.postLogin = (req, res, next) => {
       if (err) {
         return next(err);
       }
+      if (req.body.rememberMe) {
+        req.session.cookie.expires = false;
+        // console.log("cookie:", req.session, req.sessionOptions);
+      } else {
+        req.session.cookie.maxAge = 60000 * 60; // 60 minute expiration
+        // console.log("cookie:", req.session, req.sessionOptions);
+      }
       req.flash("success", { msg: "Success! You are logged in." });
       // res.redirect(req.session.returnTo || "/profile");
       res.redirect(req.session.returnTo || "/main");
