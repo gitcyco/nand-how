@@ -21,6 +21,11 @@ const CircuitSchema = new mongoose.Schema({
     type: String,
     require: false,
   },
+  public: {
+    type: Boolean,
+    require: true,
+    default: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

@@ -51,6 +51,7 @@ module.exports = {
         canvas: req.body.canvas,
         image: result.secure_url,
         cloudinaryId: result.public_id,
+        public: req.body.public,
       });
       // console.log("RECEIVED JSON:", req.body);
     } catch (error) {

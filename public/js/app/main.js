@@ -126,12 +126,14 @@ async function saveSketchHandler(event, canvas) {
   });
 
   const saveName = document.getElementById("save-name").value;
+  const publicPrivate = document.getElementById("publicPrivateCheck").checked;
+  console.log("public / private: ", publicPrivate);
 
   // Grab a JSON representation of the canvas
   const canvasJSON = getCanvasJSON(canvas);
 
   // Send the canvas to the server with a screenshot
-  putCanvasJSON(canvasJSON, saveName, pngImage);
+  putCanvasJSON(canvasJSON, saveName, pngImage, publicPrivate);
 
   // Clear the form before it closes
   document.getElementById("save-name").value = "";
@@ -215,7 +217,7 @@ function getCanvasJSON(canvas) {
 }
 
 // This saves a JSON sketch to the database along with a screenshot of the current canvas
-async function putCanvasJSON(canvasJSON, sketchTitle, png) {
+async function putCanvasJSON(canvasJSON, sketchTitle, png, publicPrivate) {
   try {
     const response = await fetch("circuits/createCircuit", {
       method: "put",
@@ -224,6 +226,7 @@ async function putCanvasJSON(canvasJSON, sketchTitle, png) {
         title: sketchTitle,
         canvas: canvasJSON,
         image: png,
+        public: publicPrivate,
       }),
     });
     const data = await response.json();
