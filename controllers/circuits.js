@@ -1,6 +1,5 @@
 const cloudinary = require("../middleware/cloudinary");
 const Circuit = require("../models/Circuit");
-// const Post = require("../models/Post");
 
 module.exports = {
   listCircuits: async (req, res) => {
@@ -17,7 +16,6 @@ module.exports = {
     console.log("getCircuit");
     try {
       console.log("getCircuit id:", req.params.id);
-      // const circuitJSON = await Circuit.find({ title: "Canvas Save", user: req.user.id });
       const circuitJSON = await Circuit.findById({ _id: req.params.id });
 
       res.json(circuitJSON);
@@ -29,18 +27,6 @@ module.exports = {
   createCircuit: async (req, res) => {
     try {
       console.log("createCircuit");
-
-      // console.log("BEFORE: ", req.body);
-
-      // await Circuit.findOneAndUpdate(
-      //   { title: req.body.title, user: req.user.id },
-      //   {
-      //     title: req.body.title,
-      //     user: req.user.id,
-      //     canvas: req.body.canvas,
-      //   },
-      //   { upsert: true }
-      // );
 
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.body.image, { effect: "trim" });
