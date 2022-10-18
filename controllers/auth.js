@@ -7,9 +7,10 @@ exports.getLogin = (req, res) => {
     // return res.redirect("/profile");
     return res.redirect("/main");
   }
-  res.render("login", {
-    title: "Login",
-  });
+  return res.redirect("/");
+  // res.render("login", {
+  //   title: "Login",
+  // });
 };
 
 exports.postLogin = (req, res, next) => {
@@ -31,7 +32,7 @@ exports.postLogin = (req, res, next) => {
     }
     if (!user) {
       req.flash("errors", info);
-      return res.redirect("/login");
+      return res.redirect("/");
     }
     req.logIn(user, (err) => {
       if (err) {

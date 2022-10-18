@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>NAND How!</title>
-        
-        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-        <link type="text/css" rel="stylesheet" href="/css/index.css" /> -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAND How! Users</title>
 
-        <!-- MDB -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet"/>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"> -->
+    
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-            integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-            crossorigin="anonymous"/>
+    <link type="text/css" rel="stylesheet" href="/css/aristo/jquery-ui-1.8.16.custom.css" />
+    <link type="text/css" rel="stylesheet" href="/css/jquery.layout.css" />
+    <link type="text/css" rel="stylesheet" href="/css/application.css" />
 
-        <link type="text/css" rel="stylesheet" href="/css/main.css" />
+    <link type="text/css" rel="stylesheet" href="/css/main.css" />
+    <link type="text/css" rel="stylesheet" href="/css/users.css" />
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
-    </head>
-    <body>
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet"/>
+
+    <!-- <link type="text/css" rel="stylesheet" href="/css/navbar.css" /> -->
+    <!-- <link type="text/css" rel="stylesheet" href="/css/mainLayout.css" /> -->
+
+</head>
+<body >
+    <header>
         <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark main">
             <div class="container px-5">
                 <a class="navbar-brand" href="#!">NAND How!</a>
                 <img class="svg-icons" src = "/svg/AND.svg" alt="AND"/>
@@ -37,79 +48,77 @@
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         <% if (user) { %>
-                          <li class="nav-item">
+                        <li class="nav-item">
                             <a class="btn btn-primary" href="/logout">Logout</a>
-                          </li>
+                        </li>
                         <%} else { %>
-                          <li>
+                        <li>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#loginModal">
-                              Login
+                            Login
                             </button>
-                          </li>
+                        </li>
                         <% } %>
-                      </ul>
+                    </ul>
                 </div>
             </div>
         </nav>
-        <!-- Page Content-->
-        <div class="container px-4 px-lg-5">
-            <!-- Heading Row-->
-            <div class="row gx-4 gx-lg-5 align-items-center my-5">
-                <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="/imgs/logic.gif" alt="..." /></div>
-                <div class="col-lg-5">
-                    <h1 class="font-weight-light">NAND How!</h1>
-                    <p>NAND How! allows you to learn and explore boolean logic with a simple, drag and drop interface to build boolean logic circuits. Learn how to create every possible logic gate from simple combinations of rudimentary gates. This is how all computers operate, and YOU can learn How!</p>
-                    <a class="btn btn-primary" href="/main">Explore the Sandbox!</a>
-                </div>
-            </div>
-            <!-- Call to Action-->
-            <div class="card text-white bg-secondary my-5 py-4 text-center">
-                <div class="card-body"><p class="text-white m-0">Take a peek into how computing works at the most fundamental level! How do 1's and 0's turn into the software you are using to view this page right now? We will offer you a glimpse of that world, and you are in control!</p></div>
-            </div>
-            <!-- Content Row-->
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Explore!</h2>
-                            <p class="card-text">Use the sandbox to create your own logic circuits!</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Learn!</h2>
-                            <p class="card-text">Follow the tutorial to learn how to construct basic logic functions from fundamental gates such as NAND.</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h2 class="card-title">Share!</h2>
-                            <p class="card-text">You can share your creations and see what others have done!</p>
-                        </div>
-                        <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div>
+    </header>
+
+    <div class="container-fluid bg-dark">
+        <div class="row">
+            <div class="col-sm-auto bg-darkxxx sticky-top">
+                <div class="d-flex flex-sm-column flex-row flex-nowrap bg-darkxxx align-items-center sticky-top">
+                    
+                    <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center ">
+
+                    </ul>
+                    <div class="dropdown">
+                        <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi-person-circle h2"></i>
+                        </a>
+                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
+                            <li><a class="dropdown-item" href="/settings">Settings</a></li>
+                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">New project...</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
+            <div class="col">
+            <!-- Main users body -->
+            <div class="container">
+                <div class="row justify-content-center mt-5">
+                  <ul class="row list-unstyled">
+                    <% for(var i=0; i<users.length; i++) {%>
+                      <li class="col-6 justify-content-between mt-5">
+                        <a href="/users/<%= users[i]._id%>">
+                          <%= users[i].userName %>
+                        </a>
+                      </li>
+                    <% } %>
+                    </ul>
+                </div>
+              </div>  
+            <!-- end main users body -->
+
+            </div>
+
         </div>
+    </div>
+    
+    <!-- Footer-->
+    <footer class="xxxpy-5 bg-dark">
+        <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; NAND How! 2022</p></div>
+    </footer>
 
-        <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; NAND How! 2022</p></div>
-        </footer>
 
-        <!-- Modal -->
-        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="login-register-model-label" aria-hidden="true">
+        <!-- Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="login-register-model-label">Sign in or register to participate!</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Sign in or register to participate!</h5>
                         <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -151,7 +160,7 @@
                                     <div class="col-md-6 d-flex justify-content-center">
                                         <!-- Checkbox -->
                                         <div class="form-check mb-3 mb-md-0">
-                                            <input class="form-check-input" type="checkbox" id="loginCheck" name="rememberMe" value="paid training" checked />
+                                            <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
                                             <label class="form-check-label" for="loginCheck"> Remember me </label>
                                         </div>
                                     </div>
@@ -222,16 +231,20 @@
                 </div>
             </div>
         </div>
-      <!-- /Modal -->
+      <!-- /Login Modal -->
+
+      
+    
 
 
+    <!-- Scripts below here -->
 
-        <!-- Scripts below here -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
-        <!-- Bootstrap core JS-->
-        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
-        <!-- Core theme JS-->
-        <script src="js/index.js"></script>
-    </body>
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+
+    
+</body>
 </html>

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAND How!</title>
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous"> -->
+    
+
+    <link type="text/css" rel="stylesheet" href="/css/aristo/jquery-ui-1.8.16.custom.css" />
+    <link type="text/css" rel="stylesheet" href="/css/jquery.layout.css" />
+    <link type="text/css" rel="stylesheet" href="/css/application.css" />
+
+    <link type="text/css" rel="stylesheet" href="/css/main.css" />
+    <link type="text/css" rel="stylesheet" href="/css/profile.css" />
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet"/>
+
+    <!-- <link type="text/css" rel="stylesheet" href="/css/navbar.css" /> -->
+    <!-- <link type="text/css" rel="stylesheet" href="/css/mainLayout.css" /> -->
+
+</head>
+<body >
+    <header>
+        <!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark main">
+            <div class="container px-5">
+                <a class="navbar-brand" href="#!">NAND How!</a>
+                <img class="svg-icons" src = "/svg/AND.svg" alt="AND"/>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Start Learning</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/main">Sandbox</a></li>
+                    </ul>
+                    
+                    <ul class="navbar-nav ms-auto"> 
+                        <% if (user) { %>
+                            <li>
+                                <div class="dropdown">
+                                    <a href="#" class="d-flex align-items-center justify-content-center pe-3 link-light text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi-person-circle h2"></i>
+                                    </a>
+                                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
+                                        <li><a class="dropdown-item" href="/profile">Settings</a></li>
+                                        <li><a class="dropdown-item" href="/profile">Profile</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-primary" href="/logout">Logout</a>
+                            </li>
+                        <%} else { %>
+                            <li>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#loginModal">
+                                Login
+                                </button>
+                            </li>
+                        <% } %>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid bg-dark">
+        <div class="row min-vh-100">
+            <div class="col-sm-auto bg-darkxxx sticky-top">
+                <div class="d-flex flex-sm-column flex-row flex-nowrap bg-darkxxx align-items-center sticky-top">
+                    <!-- <a href="/" class="d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                        <i class="bi-bootstrap fs-1"></i>
+                    </a> -->
+                    <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center ">
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+            <!-- Main profile body -->
+                <div class="xxxcontainer text-light">
+                    <div class="xxxrow justify-content-center">
+                        <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+
+
+                            <!-- <div class="rating" style="display: inline-block;">
+                                <input type="radio" value="5" name="rating" id="rating-5"/>
+                                <label for="rating-5" title="5 stars">*</label>
+                                <input type="radio" value="4" name="rating" id="rating-4"/>
+                                <label for="rating-4" title="4 stars">*</label>  
+                                <input type="radio" value="3" name="rating" id="rating-3"/>
+                                <label for="rating-3" title="3 stars">*</label>  
+                                <input type="radio" value="2" name="rating" id="rating-2"/>
+                                <label for="rating-2" title="2 stars">*</label>  
+                                <input type="radio" value="1" name="rating" id="rating-1"/>
+                                <label for="rating-1" title="1 star">*</label>  
+                            </div> -->
+
+
+                            <h2 class="h3 mb-4 page-title text-light mt-2">Settings</h2>
+                            <div class="my-4">
+                                <!-- <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Profile</a>
+                                    </li>
+                                </ul> -->
+                                <form action="/profile/updateProfile" enctype="multipart/form-data" method="POST">
+                                    <div class="row mt-5 align-items-center">
+                                        <div class="col-md-3 text-center mb-5">
+                                            <div class="avatar avatar-xl">
+                                                <% if (user.image) { %>
+                                                    <img src="<%= user.image %>" alt="..." class="avatar-img rounded-circle" />
+                                                <%} else { %>
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="..." class="avatar-img rounded-circle" />
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-7">
+                                                    <h4 class="mb-1"><%= user.userName%></h4>
+                                                    <p class="small mb-3"><span class="badge badge-dark"><%= user.location%></span></p>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+                                                <div class="col-md-7">
+                                                    <h3>About</h3>
+                                                    <p class="text-muted" id="profile-about"><%= user.about%>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <span id="edit-profile-button" class="btn btn-secondary">edit</span>
+                                        </div>
+                                    </div>
+                                    <hr class="my-4" />
+                                    <div id="edit-profile-section" class="d-none">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="inputName">Name</label>
+                                                <input type="text" id="inputName" class="form-control" placeholder="Name" name="inputName"/>
+                                            </div>
+                                            <!-- <div class="form-group col-md-6">
+                                                <label for="lastname">Lastname</label>
+                                                <input type="text" id="lastname" class="form-control" placeholder="Last Name" />
+                                            </div> -->
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputEmail">Email</label>
+                                            <input type="email" class="form-control" id="inputEmail" placeholder="email@example.com" name="inputEmail" />
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputLocation">Location</label>
+                                                <select id="inputLocation" class="form-control" name="inputLocation">
+                                                    <!-- <option selected="">Choose...</option> -->
+                                                    <option value="Afghanistan">Afghanistan</option>
+                                                    <option value="Aland Islands">Aland Islands</option>
+                                                    <option value="Albania">Albania</option>
+                                                    <option value="Algeria">Algeria</option>
+                                                    <option value="American Samoa">American Samoa</option>
+                                                    <option value="Andorra">Andorra</option>
+                                                    <option value="Angola">Angola</option>
+                                                    <option value="Anguilla">Anguilla</option>
+                                                    <option value="Antarctica">Antarctica</option>
+                                                    <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                                                    <option value="Argentina">Argentina</option>
+                                                    <option value="Armenia">Armenia</option>
+                                                    <option value="Aruba">Aruba</option>
+                                                    <option value="Australia">Australia</option>
+                                                    <option value="Austria">Austria</option>
+                                                    <option value="Azerbaijan">Azerbaijan</option>
+                                                    <option value="Bahamas">Bahamas</option>
+                                                    <option value="Bahrain">Bahrain</option>
+                                                    <option value="Bangladesh">Bangladesh</option>
+                                                    <option value="Barbados">Barbados</option>
+                                                    <option value="Belarus">Belarus</option>
+                                                    <option value="Belgium">Belgium</option>
+                                                    <option value="Belize">Belize</option>
+                                                    <option value="Benin">Benin</option>
+                                                    <option value="Bermuda">Bermuda</option>
+                                                    <option value="Bhutan">Bhutan</option>
+                                                    <option value="Bolivia">Bolivia</option>
+                                                    <option value="Bonaire, Sint Eustatius and Saba">Bonaire, Sint Eustatius and Saba</option>
+                                                    <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                                                    <option value="Botswana">Botswana</option>
+                                                    <option value="Bouvet Island">Bouvet Island</option>
+                                                    <option value="Brazil">Brazil</option>
+                                                    <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                                                    <option value="Brunei Darussalam">Brunei Darussalam</option>
+                                                    <option value="Bulgaria">Bulgaria</option>
+                                                    <option value="Burkina Faso">Burkina Faso</option>
+                                                    <option value="Burundi">Burundi</option>
+                                                    <option value="Cambodia">Cambodia</option>
+                                                    <option value="Cameroon">Cameroon</option>
+                                                    <option value="Canada">Canada</option>
+                                                    <option value="Cape Verde">Cape Verde</option>
+                                                    <option value="Cayman Islands">Cayman Islands</option>
+                                                    <option value="Central African Republic">Central African Republic</option>
+                                                    <option value="Chad">Chad</option>
+                                                    <option value="Chile">Chile</option>
+                                                    <option value="China">China</option>
+                                                    <option value="Christmas Island">Christmas Island</option>
+                                                    <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                                                    <option value="Colombia">Colombia</option>
+                                                    <option value="Comoros">Comoros</option>
+                                                    <option value="Congo">Congo</option>
+                                                    <option value="Congo, Democratic Republic of the Congo">Congo, Democratic Republic of the Congo</option>
+                                                    <option value="Cook Islands">Cook Islands</option>
+                                                    <option value="Costa Rica">Costa Rica</option>
+                                                    <option value="Cote D'Ivoire">Cote D'Ivoire</option>
+                                                    <option value="Croatia">Croatia</option>
+                                                    <option value="Cuba">Cuba</option>
+                                                    <option value="Curacao">Curacao</option>
+                                                    <option value="Cyprus">Cyprus</option>
+                                                    <option value="Czech Republic">Czech Republic</option>
+                                                    <option value="Denmark">Denmark</option>
+                                                    <option value="Djibouti">Djibouti</option>
+                                                    <option value="Dominica">Dominica</option>
+                                                    <option value="Dominican Republic">Dominican Republic</option>
+                                                    <option value="Ecuador">Ecuador</option>
+                                                    <option value="Egypt">Egypt</option>
+                                                    <option value="El Salvador">El Salvador</option>
+                                                    <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                                    <option value="Eritrea">Eritrea</option>
+                                                    <option value="Estonia">Estonia</option>
+                                                    <option value="Ethiopia">Ethiopia</option>
+                                                    <option value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
+                                                    <option value="Faroe Islands">Faroe Islands</option>
+                                                    <option value="Fiji">Fiji</option>
+                                                    <option value="Finland">Finland</option>
+                                                    <option value="France">France</option>
+                                                    <option value="French Guiana">French Guiana</option>
+                                                    <option value="French Polynesia">French Polynesia</option>
+                                                    <option value="French Southern Territories">French Southern Territories</option>
+                                                    <option value="Gabon">Gabon</option>
+                                                    <option value="Gambia">Gambia</option>
+                                                    <option value="Georgia">Georgia</option>
+                                                    <option value="Germany">Germany</option>
+                                                    <option value="Ghana">Ghana</option>
+                                                    <option value="Gibraltar">Gibraltar</option>
+                                                    <option value="Greece">Greece</option>
+                                                    <option value="Greenland">Greenland</option>
+                                                    <option value="Grenada">Grenada</option>
+                                                    <option value="Guadeloupe">Guadeloupe</option>
+                                                    <option value="Guam">Guam</option>
+                                                    <option value="Guatemala">Guatemala</option>
+                                                    <option value="Guernsey">Guernsey</option>
+                                                    <option value="Guinea">Guinea</option>
+                                                    <option value="Guinea-Bissau">Guinea-Bissau</option>
+                                                    <option value="Guyana">Guyana</option>
+                                                    <option value="Haiti">Haiti</option>
+                                                    <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
+                                                    <option value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
+                                                    <option value="Honduras">Honduras</option>
+                                                    <option value="Hong Kong">Hong Kong</option>
+                                                    <option value="Hungary">Hungary</option>
+                                                    <option value="Iceland">Iceland</option>
+                                                    <option value="India">India</option>
+                                                    <option value="Indonesia">Indonesia</option>
+                                                    <option value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
+                                                    <option value="Iraq">Iraq</option>
+                                                    <option value="Ireland">Ireland</option>
+                                                    <option value="Isle of Man">Isle of Man</option>
+                                                    <option value="Israel">Israel</option>
+                                                    <option value="Italy">Italy</option>
+                                                    <option value="Jamaica">Jamaica</option>
+                                                    <option value="Japan">Japan</option>
+                                                    <option value="Jersey">Jersey</option>
+                                                    <option value="Jordan">Jordan</option>
+                                                    <option value="Kazakhstan">Kazakhstan</option>
+                                                    <option value="Kenya">Kenya</option>
+                                                    <option value="Kiribati">Kiribati</option>
+                                                    <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
+                                                    <option value="Korea, Republic of">Korea, Republic of</option>
+                                                    <option value="Kosovo">Kosovo</option>
+                                                    <option value="Kuwait">Kuwait</option>
+                                                    <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                                    <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+                                                    <option value="Latvia">Latvia</option>
+                                                    <option value="Lebanon">Lebanon</option>
+                                                    <option value="Lesotho">Lesotho</option>
+                                                    <option value="Liberia">Liberia</option>
+                                                    <option value="Libyan Arab Jamahiriya">Libyan Arab Jamahiriya</option>
+                                                    <option value="Liechtenstein">Liechtenstein</option>
+                                                    <option value="Lithuania">Lithuania</option>
+                                                    <option value="Luxembourg">Luxembourg</option>
+                                                    <option value="Macao">Macao</option>
+                                                    <option value="Macedonia, the Former Yugoslav Republic of">Macedonia, the Former Yugoslav Republic of</option>
+                                                    <option value="Madagascar">Madagascar</option>
+                                                    <option value="Malawi">Malawi</option>
+                                                    <option value="Malaysia">Malaysia</option>
+                                                    <option value="Maldives">Maldives</option>
+                                                    <option value="Mali">Mali</option>
+                                                    <option value="Malta">Malta</option>
+                                                    <option value="Marshall Islands">Marshall Islands</option>
+                                                    <option value="Martinique">Martinique</option>
+                                                    <option value="Mauritania">Mauritania</option>
+                                                    <option value="Mauritius">Mauritius</option>
+                                                    <option value="Mayotte">Mayotte</option>
+                                                    <option value="Mexico">Mexico</option>
+                                                    <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+                                                    <option value="Moldova, Republic of">Moldova, Republic of</option>
+                                                    <option value="Monaco">Monaco</option>
+                                                    <option value="Mongolia">Mongolia</option>
+                                                    <option value="Montenegro">Montenegro</option>
+                                                    <option value="Montserrat">Montserrat</option>
+                                                    <option value="Morocco">Morocco</option>
+                                                    <option value="Mozambique">Mozambique</option>
+                                                    <option value="Myanmar">Myanmar</option>
+                                                    <option value="Namibia">Namibia</option>
+                                                    <option value="Nauru">Nauru</option>
+                                                    <option value="Nepal">Nepal</option>
+                                                    <option value="Netherlands">Netherlands</option>
+                                                    <option value="Netherlands Antilles">Netherlands Antilles</option>
+                                                    <option value="New Caledonia">New Caledonia</option>
+                                                    <option value="New Zealand">New Zealand</option>
+                                                    <option value="Nicaragua">Nicaragua</option>
+                                                    <option value="Niger">Niger</option>
+                                                    <option value="Nigeria">Nigeria</option>
+                                                    <option value="Niue">Niue</option>
+                                                    <option value="Norfolk Island">Norfolk Island</option>
+                                                    <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                                                    <option value="Norway">Norway</option>
+                                                    <option value="Oman">Oman</option>
+                                                    <option value="Pakistan">Pakistan</option>
+                                                    <option value="Palau">Palau</option>
+                                                    <option value="Palestinian Territory, Occupied">Palestinian Territory, Occupied</option>
+                                                    <option value="Panama">Panama</option>
+                                                    <option value="Papua New Guinea">Papua New Guinea</option>
+                                                    <option value="Paraguay">Paraguay</option>
+                                                    <option value="Peru">Peru</option>
+                                                    <option value="Philippines">Philippines</option>
+                                                    <option value="Pitcairn">Pitcairn</option>
+                                                    <option value="Poland">Poland</option>
+                                                    <option value="Portugal">Portugal</option>
+                                                    <option value="Puerto Rico">Puerto Rico</option>
+                                                    <option value="Qatar">Qatar</option>
+                                                    <option value="Reunion">Reunion</option>
+                                                    <option value="Romania">Romania</option>
+                                                    <option value="Russian Federation">Russian Federation</option>
+                                                    <option value="Rwanda">Rwanda</option>
+                                                    <option value="Saint Barthelemy">Saint Barthelemy</option>
+                                                    <option value="Saint Helena">Saint Helena</option>
+                                                    <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                                                    <option value="Saint Lucia">Saint Lucia</option>
+                                                    <option value="Saint Martin">Saint Martin</option>
+                                                    <option value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
+                                                    <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                                                    <option value="Samoa">Samoa</option>
+                                                    <option value="San Marino">San Marino</option>
+                                                    <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                                                    <option value="Saudi Arabia">Saudi Arabia</option>
+                                                    <option value="Senegal">Senegal</option>
+                                                    <option value="Serbia">Serbia</option>
+                                                    <option value="Serbia and Montenegro">Serbia and Montenegro</option>
+                                                    <option value="Seychelles">Seychelles</option>
+                                                    <option value="Sierra Leone">Sierra Leone</option>
+                                                    <option value="Singapore">Singapore</option>
+                                                    <option value="Sint Maarten">Sint Maarten</option>
+                                                    <option value="Slovakia">Slovakia</option>
+                                                    <option value="Slovenia">Slovenia</option>
+                                                    <option value="Solomon Islands">Solomon Islands</option>
+                                                    <option value="Somalia">Somalia</option>
+                                                    <option value="South Africa">South Africa</option>
+                                                    <option value="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands</option>
+                                                    <option value="South Sudan">South Sudan</option>
+                                                    <option value="Spain">Spain</option>
+                                                    <option value="Sri Lanka">Sri Lanka</option>
+                                                    <option value="Sudan">Sudan</option>
+                                                    <option value="Suriname">Suriname</option>
+                                                    <option value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
+                                                    <option value="Swaziland">Swaziland</option>
+                                                    <option value="Sweden">Sweden</option>
+                                                    <option value="Switzerland">Switzerland</option>
+                                                    <option value="Syrian Arab Republic">Syrian Arab Republic</option>
+                                                    <option value="Taiwan, Province of China">Taiwan, Province of China</option>
+                                                    <option value="Tajikistan">Tajikistan</option>
+                                                    <option value="Tanzania, United Republic of">Tanzania, United Republic of</option>
+                                                    <option value="Thailand">Thailand</option>
+                                                    <option value="Timor-Leste">Timor-Leste</option>
+                                                    <option value="Togo">Togo</option>
+                                                    <option value="Tokelau">Tokelau</option>
+                                                    <option value="Tonga">Tonga</option>
+                                                    <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                                                    <option value="Tunisia">Tunisia</option>
+                                                    <option value="Turkey">Turkey</option>
+                                                    <option value="Turkmenistan">Turkmenistan</option>
+                                                    <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                                                    <option value="Tuvalu">Tuvalu</option>
+                                                    <option value="Uganda">Uganda</option>
+                                                    <option value="Ukraine">Ukraine</option>
+                                                    <option value="United Arab Emirates">United Arab Emirates</option>
+                                                    <option value="United Kingdom">United Kingdom</option>
+                                                    <option selected="" value="United States">United States</option>
+                                                    <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
+                                                    <option value="Uruguay">Uruguay</option>
+                                                    <option value="Uzbekistan">Uzbekistan</option>
+                                                    <option value="Vanuatu">Vanuatu</option>
+                                                    <option value="Venezuela">Venezuela</option>
+                                                    <option value="Viet Nam">Viet Nam</option>
+                                                    <option value="Virgin Islands, British">Virgin Islands, British</option>
+                                                    <option value="Virgin Islands, U.s.">Virgin Islands, U.s.</option>
+                                                    <option value="Wallis and Futuna">Wallis and Futuna</option>
+                                                    <option value="Western Sahara">Western Sahara</option>
+                                                    <option value="Yemen">Yemen</option>
+                                                    <option value="Zambia">Zambia</option>
+                                                    <option value="Zimbabwe">Zimbabwe</option>
+                                                </select>
+                                            </div>
+                                        </div>
+    
+                                        <div class="form-row">
+                                            <div class="form-group col-md-4 text-light">
+                                                <label for="about">Tell us your story:</label>
+                                            <textarea id="about" name="about" rows="5" cols="80" maxlength="1024"><%= user.about%></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-row mb-3">
+                                            <label for="imageUpload" class="">Profile Image</label>
+                                            <input type="file" class="form-control" id="imageUpload" name="file">
+                                        </div>
+                                        <hr class="my-4" />
+                                        <div class="row mb-4">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="oldPassword">Old Password</label>
+                                                    <input type="password" class="form-control" id="oldPassword" name="oldPassword"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="newPassword">New Password</label>
+                                                    <input type="password" class="form-control" id="newPassword" name="newPassword"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="newPasswordConfirm">Confirm Password</label>
+                                                    <input type="password" class="form-control" id="newPasswordConfirm" name="newPasswordConfirm"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="mb-2">Password requirements</p>
+                                                <p class="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
+                                                <ul class="small text-muted pl-4 mb-0">
+                                                    <li>Minimum 8 character</li>
+                                                    <li>At least one special character</li>
+                                                    <li>At least one number</li>
+                                                    <li>Can’t be the same as a previous password</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Save Change</button>
+
+                                    </div>
+                                    
+                                    
+                                </form>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <!-- end main profile body -->
+
+            </div>
+
+        </div>
+    </div>
+    
+    <!-- Footer-->
+    <footer class="xxxpy-5 bg-dark">
+        <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; NAND How! 2022</p></div>
+    </footer>
+
+
+        <!-- Login Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Sign in or register to participate!</h5>
+                        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Pills navs -->
+                        <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                            <li class="nav-item" role="presentation">
+                            <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="#pills-login" role="tab"
+                                aria-controls="pills-login" aria-selected="true">Login</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                            <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="#pills-register" role="tab"
+                                aria-controls="pills-register" aria-selected="false">Register</a>
+                            </li>
+                        </ul>
+                        <!-- Pills navs -->
+
+                    <!-- Pills content -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                            <form action="/login" method="POST">
+                                <div class="text-center mb-3">
+                                    <p>Sign in with:</p>
+                                </div>
+
+                                <!-- Email input -->
+                                <div class="form-outline mb-4">
+                                    <input type="email" id="loginEmail" class="form-control" name="email" />
+                                    <label class="form-label" for="loginEmail">Email</label>
+                                </div>
+
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="loginPassword" class="form-control" name="password" />
+                                    <label class="form-label" for="loginPassword">Password</label>
+                                </div>
+
+                                <!-- 2 column grid layout -->
+                                <div class="row mb-4">
+                                    <div class="col-md-6 d-flex justify-content-center">
+                                        <!-- Checkbox -->
+                                        <div class="form-check mb-3 mb-md-0">
+                                            <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
+                                            <label class="form-check-label" for="loginCheck"> Remember me </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 d-flex justify-content-center">
+                                        <!-- Simple link -->
+                                        <a href="#!">Forgot password?</a>
+                                    </div>
+                                </div>
+
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+                            <form action="/signup" method="POST">
+                                <div class="text-center mb-3">
+                                    <p>Sign up with:</p>
+                                </div>
+
+                                <!-- Name input -->
+
+                                <!-- Username input -->
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="registerUsername" class="form-control" name="userName"/>
+                                    <label class="form-label" for="registerUsername">Username</label>
+                                </div>
+
+                                <!-- Email input -->
+                                <div class="form-outline mb-4">
+                                    <input type="email" id="registerEmail" class="form-control" name="email" />
+                                    <label class="form-label" for="registerEmail">Email</label>
+                                </div>
+
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="registerPassword" class="form-control" name="password"/>
+                                    <label class="form-label" for="registerPassword">Password</label>
+                                </div>
+
+                                <!-- Repeat Password input -->
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="confirmPassword" class="form-control" name="confirmPassword"/>
+                                    <label class="form-label" for="confirmPassword">Repeat password</label>
+                                </div>
+
+                                <!-- Checkbox -->
+                                <div class="form-check d-flex justify-content-center mb-4">
+                                    <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
+                                        aria-describedby="registerCheckHelpText" />
+                                    <label class="form-check-label" for="registerCheck">
+                                        I have read and agree to the terms
+                                    </label>
+                                </div>
+
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Pills content -->
+
+                    </div>
+                    <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!-- /Login Modal -->
+
+      
+    
+
+
+    <!-- Scripts below here -->
+
+    
+    <script src="js/app/profile.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+
+
+</body>
+</html>
