@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // on the type of the button that was clicked.
 function insertElement(e, canvas, circuitType) {
   console.log("INSERTING:", circuitType);
+  let popover;
   switch (circuitType) {
     case "AND":
       let andClean = new AndClean({ x: 275, y: 200, width: 70, height: 70 });
@@ -97,6 +98,16 @@ function insertElement(e, canvas, circuitType) {
       canvas.add(xorClean, 150, 280);
       break;
     case "BIT-SEND":
+      console.log(e.target);
+      // popover = new bootstrap.Popover(e.target, {
+      //   content: "This is a test",
+      //   title: "BIT Emitter",
+      //   trigger: "click,focus",
+      //   delay: { show: 100, hide: 3000 },
+      // });
+      // console.log("popover:", popover);
+      // popover.show();
+      // popover.hide();
       // bitSend is a bit initiator, toggle 0/1, false/true, off/on, red/green
       let bitSend = new BitSend({ x: 125, y: 150, width: 30, height: 30 });
       canvas.add(bitSend, 50, 50);
@@ -112,6 +123,19 @@ function insertElement(e, canvas, circuitType) {
       break;
   }
 }
+
+const insertBitSend = document.getElementById("insert-bit-send");
+insertBitSend.addEventListener("click", (e) => {
+  let popover = new bootstrap.Popover(insertBitSend, {
+    content: "This is a test ext",
+    title: "BIT Emitter external",
+    trigger: "focus",
+    delay: { show: 100, hide: 300 },
+  });
+  popover.show();
+
+  setTimeout(() => popover.dispose(), 2000);
+});
 
 //
 async function saveSketchHandler(event, canvas) {

@@ -42,7 +42,7 @@
                         <i class="bi-bootstrap fs-1"></i>
                     </a>
                     <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center ">
-                        <li class="nav-item">
+                        <li class="nav-item" id="insert-bit-send-li">
                             <a href="#" title="BIT SEND" id="insert-bit-send" class="insert-circuit d-block xxxp-3 link-dark text-decoration-none text-light" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only" data-circuit="BIT-SEND">
                                 <img class="svg-icons" src = "/svg/BIT-SEND.svg" alt="BIT-SEND"/>
                             </a>
@@ -94,11 +94,13 @@
                         </li>
                         
                         <li class="nav-item" style="height: 20px"></li>
-                        <li class="nav-item">
-                            <a href="#" title="SAVE/LOAD" class="d-block xxxp-3 link-dark text-decoration-none text-light svg-icons" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-                                    <i class="fa-solid fa-floppy-disk fa-xl" data-mdb-toggle="modal" data-mdb-target="#saveLoadModal"></i>
-                            </a>
-                        </li>
+                        <% if (user) { %>
+                            <li class="nav-item">
+                                <a href="#" title="SAVE/LOAD" class="d-block xxxp-3 link-dark text-decoration-none text-light svg-icons" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+                                        <i class="fa-solid fa-floppy-disk fa-xl" data-mdb-toggle="modal" data-mdb-target="#saveLoadModal"></i>
+                                </a>
+                            </li>
+                        <% } %>
                         <!-- <li class="nav-item">
                             <a href="#" class="nav-link xxxpy-3 px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
                                 <i class="bi-save fs-1 xxxtext-light"></i>
@@ -120,16 +122,6 @@
                             </a>
                         </li> -->
                     </ul>
-                    <div class="dropdown">
-                        <a href="#" class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi-person-circle h2"></i>
-                        </a>
-                        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser">
-                            <li><a class="dropdown-item" href="/settings">Settings</a></li>
-                            <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">New project...</a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
             <div class="col-sm p-3 xxxmin-vh-100">
