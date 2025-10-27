@@ -118,6 +118,7 @@ If you'd like to get started on your own version of the site, here you go!
    CLOUD_NAME = `your cloudinary cloud name`
    API_KEY = `your cloudinary api key`
    API_SECRET = `your cloudinary api secret`
+   SESSION_SECRET = `your session secret key`;
    ```
 6. ```shell
    npm start
